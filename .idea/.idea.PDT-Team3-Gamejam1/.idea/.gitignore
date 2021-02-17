@@ -1,0 +1,13 @@
+# Default ignored files
+/shelf/
+/workspace.xml
+# Rider ignored files
+/modules.xml
+/projectSettingsUpdater.xml
+/contentModel.xml
+/.idea.PDT-Team3-Gamejam1.iml
+# Datasource local storage ignored files
+/../../../../../../../../../../../../:\Users\Sam\Desktop\Stuff\Game Dev\PDT\2021\PDT-Team3-Gamejam1\.idea\.idea.PDT-Team3-Gamejam1\.idea/dataSources/
+/dataSources.local.xml
+# Editor-based HTTP Client requests
+/httpRequests/
