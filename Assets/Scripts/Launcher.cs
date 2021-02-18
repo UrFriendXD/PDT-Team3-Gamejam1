@@ -142,7 +142,7 @@ namespace PUNTutorial
                 
                 // #Critical
                 // Load the Room Level.
-                PhotonNetwork.LoadLevel("TestScene");
+                PhotonNetwork.LoadLevel("SampleScene");
             }
         }
 

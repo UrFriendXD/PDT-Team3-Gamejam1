@@ -11,7 +11,7 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
     [Tooltip("The beams GameObject to control")] [SerializeField]
     private GameObject beams;
 
-    private DroneController _droneController;
+    private PlaneController playerController; // Subject to change, needs to be a overall controller type
 
     private bool _isFiring;
     
@@ -50,7 +50,7 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
             LocalPlayerInstance = gameObject;
         }
 
-        _droneController = GetComponent<DroneController>();
+        playerController = GetComponent<PlaneController>();
         
         // #Critical
         // We flag as don't destroy on load so that instance survives level synchronization, thus giving a seamless experience when levels load.
@@ -76,7 +76,7 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
 
         if (!photonView.IsMine)
         {
-            _droneController.enabled = false;
+            playerController.enabled = false;
         }
         
         // Should move to it's own class :3
@@ -119,7 +119,7 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
 
         if (photonView.IsMine)
         {
-            ProcessInputs();
+            //ProcessInputs();
             if (health <= 0f)
             {
                 GameManager.Instance.LeaveRoom();
@@ -209,24 +209,24 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
     
     #region Custom
 
-    private void ProcessInputs()
-    {
-        if (Input.GetButtonDown("Fire1"))
-        {
-            if (!_isFiring)
-            {
-                _isFiring = true;
-            }
-        }
-
-        if (Input.GetButtonUp("Fire1"))
-        {
-            if (_isFiring)
-            {
-                _isFiring = false;
-            }
-        }
-    }
+    // private void ProcessInputs()
+    // {
+    //     if (Input.GetButtonDown("Fire1"))
+    //     {
+    //         if (!_isFiring)
+    //         {
+    //             _isFiring = true;
+    //         }
+    //     }
+    //
+    //     if (Input.GetButtonUp("Fire1"))
+    //     {
+    //         if (_isFiring)
+    //         {
+    //             _isFiring = false;
+    //         }
+    //     }
+    // }
 
     #endregion
 
