@@ -179,6 +179,8 @@
           </e>
         </e>
         <e p="Scripts" t="Include">
+          <e p="CheckpointController.cs" t="Include" />
+          <e p="CourseManager.cs" t="Include" />
           <e p="DroneController.cs" t="Include" />
           <e p="GameManager.cs" t="Include" />
           <e p="Launcher.cs" t="Include" />

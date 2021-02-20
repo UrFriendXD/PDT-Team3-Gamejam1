@@ -91,6 +91,8 @@ public class GameManager : MonoBehaviourPunCallbacks
                 Debug.LogFormat("Ignoring scene load for {0}", SceneManagerHelper.ActiveSceneName);
             }
         }
+
+        Cursor.lockState = CursorLockMode.Confined;
     }
 
     private void LoadArena()

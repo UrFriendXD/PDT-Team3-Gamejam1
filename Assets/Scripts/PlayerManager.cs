@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.SymbolStore;
 using Photon.Pun;
 using UnityEngine;
 
@@ -9,11 +10,12 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
     #region Private Fields
 
     [Tooltip("The beams GameObject to control")] [SerializeField]
-    private GameObject beams;
+    //private GameObject beams;
 
     private PlaneController playerController; // Subject to change, needs to be a overall controller type
 
     private bool _isFiring;
+    private bool _isPaused;
     
     #endregion
 
@@ -34,14 +36,14 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
 
     private void Awake()
     {
-        if (beams == null)
-        {
-            Debug.LogError("<Color=Red><a>Missing</a></Color> Beams Reference.", this);
-        }
-        else
-        {
-            beams.SetActive(false);
-        }
+        // if (beams == null)
+        // {
+        //     Debug.LogError("<Color=Red><a>Missing</a></Color> Beams Reference.", this);
+        // }
+        // else
+        // {
+        //     beams.SetActive(false);
+        // }
         
         // #Important
         // Use in GameManager.cs: we keep track of the localPlayerInstance to prevent instantiation when levels are synchronized
@@ -59,20 +61,6 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
 
     private void Start()
     {
-        // Rework for new camera system
-        /*CameraWork _cameraWork = GetComponent<CameraWork>();
-
-        if (_cameraWork != null)
-        {
-            if (photonView.IsMine)
-            {
-                _cameraWork.OnStartFollowing();
-            }
-        }
-        else
-        {
-            Debug.LogError("<Color=Red><a>Missing</a></Color> CameraWork Component on playerPrefab.", this);
-        }*/
 
         if (!photonView.IsMine)
         {
@@ -111,11 +99,11 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
 
     private void Update()
     {
-        // Trigger beams active state
-        if (beams != null && _isFiring != beams.activeInHierarchy)
-        {
-            beams.SetActive(_isFiring);
-        }
+        // // Trigger beams active state
+        // if (beams != null && _isFiring != beams.activeInHierarchy)
+        // {
+        //     beams.SetActive(_isFiring);
+        // }
 
         if (photonView.IsMine)
         {
@@ -204,6 +192,20 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
         CalledOnLevelWasLoaded(scene.buildIndex);
     }
 #endif
+
+    private void OnPause()
+    {
+        if (_isPaused)
+        {
+            _isPaused = false;
+            Cursor.lockState = CursorLockMode.Confined;
+        }
+        else
+        {
+            _isPaused = true;
+            Cursor.lockState = CursorLockMode.None;
+        }
+    }
 
     #endregion
     

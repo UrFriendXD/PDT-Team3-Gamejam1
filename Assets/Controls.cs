@@ -49,6 +49,14 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""49beb05b-1169-4c52-aba4-e1bc00c52c67"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -205,6 +213,17 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""action"": ""Strafe"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""68477295-cabc-4f1e-a830-a093500b7bec"",
+                    ""path"": ""<Keyboard>/p"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KB&M"",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -245,6 +264,7 @@ public class @Controls : IInputActionCollection, IDisposable
         m_PlaneFlight_Yaw = m_PlaneFlight.FindAction("Yaw", throwIfNotFound: true);
         m_PlaneFlight_Pitch = m_PlaneFlight.FindAction("Pitch", throwIfNotFound: true);
         m_PlaneFlight_Strafe = m_PlaneFlight.FindAction("Strafe", throwIfNotFound: true);
+        m_PlaneFlight_Pause = m_PlaneFlight.FindAction("Pause", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -298,6 +318,7 @@ public class @Controls : IInputActionCollection, IDisposable
     private readonly InputAction m_PlaneFlight_Yaw;
     private readonly InputAction m_PlaneFlight_Pitch;
     private readonly InputAction m_PlaneFlight_Strafe;
+    private readonly InputAction m_PlaneFlight_Pause;
     public struct PlaneFlightActions
     {
         private @Controls m_Wrapper;
@@ -306,6 +327,7 @@ public class @Controls : IInputActionCollection, IDisposable
         public InputAction @Yaw => m_Wrapper.m_PlaneFlight_Yaw;
         public InputAction @Pitch => m_Wrapper.m_PlaneFlight_Pitch;
         public InputAction @Strafe => m_Wrapper.m_PlaneFlight_Strafe;
+        public InputAction @Pause => m_Wrapper.m_PlaneFlight_Pause;
         public InputActionMap Get() { return m_Wrapper.m_PlaneFlight; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -327,6 +349,9 @@ public class @Controls : IInputActionCollection, IDisposable
                 @Strafe.started -= m_Wrapper.m_PlaneFlightActionsCallbackInterface.OnStrafe;
                 @Strafe.performed -= m_Wrapper.m_PlaneFlightActionsCallbackInterface.OnStrafe;
                 @Strafe.canceled -= m_Wrapper.m_PlaneFlightActionsCallbackInterface.OnStrafe;
+                @Pause.started -= m_Wrapper.m_PlaneFlightActionsCallbackInterface.OnPause;
+                @Pause.performed -= m_Wrapper.m_PlaneFlightActionsCallbackInterface.OnPause;
+                @Pause.canceled -= m_Wrapper.m_PlaneFlightActionsCallbackInterface.OnPause;
             }
             m_Wrapper.m_PlaneFlightActionsCallbackInterface = instance;
             if (instance != null)
@@ -343,6 +368,9 @@ public class @Controls : IInputActionCollection, IDisposable
                 @Strafe.started += instance.OnStrafe;
                 @Strafe.performed += instance.OnStrafe;
                 @Strafe.canceled += instance.OnStrafe;
+                @Pause.started += instance.OnPause;
+                @Pause.performed += instance.OnPause;
+                @Pause.canceled += instance.OnPause;
             }
         }
     }
@@ -371,5 +399,6 @@ public class @Controls : IInputActionCollection, IDisposable
         void OnYaw(InputAction.CallbackContext context);
         void OnPitch(InputAction.CallbackContext context);
         void OnStrafe(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
     }
 }
