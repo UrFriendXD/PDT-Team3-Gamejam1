@@ -49,14 +49,6 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """"
-                },
-                {
-                    ""name"": ""ReverseThrottle"",
-                    ""type"": ""PassThrough"",
-                    ""id"": ""8a8a5568-a15e-40b3-a729-956995554682"",
-                    ""expectedControlType"": ""Axis"",
-                    ""processors"": """",
-                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -73,17 +65,6 @@ public class @Controls : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""f0e97928-f4fc-44ce-8435-6b13f2dddc1a"",
-                    ""path"": ""<Gamepad>/leftTrigger"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""GamePad"",
-                    ""action"": ""Throttle"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""2f5e93be-d995-4bfb-9b35-4e704e42cce7"",
                     ""path"": ""<Keyboard>/w"",
                     ""interactions"": """",
@@ -92,6 +73,39 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""action"": ""Throttle"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""Triggers"",
+                    ""id"": ""433413f4-e549-42ff-b749-80f0f44b730d"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Throttle"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""0c71f3f8-8462-447d-a7ad-7a3333f62a91"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Throttle"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""03962607-2a59-42d6-91d5-dbca9378befd"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Throttle"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 },
                 {
                     ""name"": """",
@@ -112,28 +126,6 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": ""GamePad"",
                     ""action"": ""Strafe"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""f6a46055-f950-4b53-bd00-6df4093b7c60"",
-                    ""path"": ""<Gamepad>/rightTrigger"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""GamePad"",
-                    ""action"": ""ReverseThrottle"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""f97f1677-cebc-4049-8c95-56a42211ac77"",
-                    ""path"": ""<Keyboard>/s"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""KB&M"",
-                    ""action"": ""ReverseThrottle"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -176,7 +168,6 @@ public class @Controls : IInputActionCollection, IDisposable
         m_PlaneFlight_Yaw = m_PlaneFlight.FindAction("Yaw", throwIfNotFound: true);
         m_PlaneFlight_Pitch = m_PlaneFlight.FindAction("Pitch", throwIfNotFound: true);
         m_PlaneFlight_Strafe = m_PlaneFlight.FindAction("Strafe", throwIfNotFound: true);
-        m_PlaneFlight_ReverseThrottle = m_PlaneFlight.FindAction("ReverseThrottle", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -230,7 +221,6 @@ public class @Controls : IInputActionCollection, IDisposable
     private readonly InputAction m_PlaneFlight_Yaw;
     private readonly InputAction m_PlaneFlight_Pitch;
     private readonly InputAction m_PlaneFlight_Strafe;
-    private readonly InputAction m_PlaneFlight_ReverseThrottle;
     public struct PlaneFlightActions
     {
         private @Controls m_Wrapper;
@@ -239,7 +229,6 @@ public class @Controls : IInputActionCollection, IDisposable
         public InputAction @Yaw => m_Wrapper.m_PlaneFlight_Yaw;
         public InputAction @Pitch => m_Wrapper.m_PlaneFlight_Pitch;
         public InputAction @Strafe => m_Wrapper.m_PlaneFlight_Strafe;
-        public InputAction @ReverseThrottle => m_Wrapper.m_PlaneFlight_ReverseThrottle;
         public InputActionMap Get() { return m_Wrapper.m_PlaneFlight; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -261,9 +250,6 @@ public class @Controls : IInputActionCollection, IDisposable
                 @Strafe.started -= m_Wrapper.m_PlaneFlightActionsCallbackInterface.OnStrafe;
                 @Strafe.performed -= m_Wrapper.m_PlaneFlightActionsCallbackInterface.OnStrafe;
                 @Strafe.canceled -= m_Wrapper.m_PlaneFlightActionsCallbackInterface.OnStrafe;
-                @ReverseThrottle.started -= m_Wrapper.m_PlaneFlightActionsCallbackInterface.OnReverseThrottle;
-                @ReverseThrottle.performed -= m_Wrapper.m_PlaneFlightActionsCallbackInterface.OnReverseThrottle;
-                @ReverseThrottle.canceled -= m_Wrapper.m_PlaneFlightActionsCallbackInterface.OnReverseThrottle;
             }
             m_Wrapper.m_PlaneFlightActionsCallbackInterface = instance;
             if (instance != null)
@@ -280,9 +266,6 @@ public class @Controls : IInputActionCollection, IDisposable
                 @Strafe.started += instance.OnStrafe;
                 @Strafe.performed += instance.OnStrafe;
                 @Strafe.canceled += instance.OnStrafe;
-                @ReverseThrottle.started += instance.OnReverseThrottle;
-                @ReverseThrottle.performed += instance.OnReverseThrottle;
-                @ReverseThrottle.canceled += instance.OnReverseThrottle;
             }
         }
     }
@@ -311,6 +294,5 @@ public class @Controls : IInputActionCollection, IDisposable
         void OnYaw(InputAction.CallbackContext context);
         void OnPitch(InputAction.CallbackContext context);
         void OnStrafe(InputAction.CallbackContext context);
-        void OnReverseThrottle(InputAction.CallbackContext context);
     }
 }

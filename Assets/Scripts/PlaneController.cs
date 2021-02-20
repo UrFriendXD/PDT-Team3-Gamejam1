@@ -14,7 +14,6 @@ public class PlaneController : MonoBehaviourPunCallbacks
     Controls controls;
 
     private float throttle;
-    private float reverseThrottle;
     private Vector2 strafe;
     private float yaw;
     private float pitch;
@@ -33,9 +32,6 @@ public class PlaneController : MonoBehaviourPunCallbacks
         controls.PlaneFlight.Throttle.performed += ctx => throttle = ctx.ReadValue<float>();
         controls.PlaneFlight.Throttle.canceled += ctx => throttle = 0;
 
-        controls.PlaneFlight.ReverseThrottle.performed += ctx => reverseThrottle = ctx.ReadValue<float>();
-        controls.PlaneFlight.ReverseThrottle.canceled += ctx => reverseThrottle = 0;
-
         controls.PlaneFlight.Strafe.performed += ctx => strafe = ctx.ReadValue<Vector2>();
         controls.PlaneFlight.Strafe.canceled += ctx => strafe = Vector2.zero;
 
@@ -48,7 +44,7 @@ public class PlaneController : MonoBehaviourPunCallbacks
 
     void Update()
     {
-        rb.AddForce(transform.forward * (throttle - reverseThrottle) * thrustMultiplier);
+        rb.AddForce(transform.forward * throttle * thrustMultiplier);
         rb.AddForce(transform.up * strafe.y * thrustMultiplier);
         rb.AddForce(transform.right * strafe.x * thrustMultiplier);
 
