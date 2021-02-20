@@ -99,3 +99,4 @@ MonoBehaviour:
   target: {fileID: 0}
   frontOffset: -10
   upOffset: 4
+  pitchFollowFactor: 0.1

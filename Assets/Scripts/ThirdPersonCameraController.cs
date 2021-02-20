@@ -7,6 +7,7 @@ public class ThirdPersonCameraController : MonoBehaviour
     [SerializeField] private Transform target;
     [SerializeField] private float frontOffset;
     [SerializeField] private float upOffset;
+    [SerializeField] private float pitchFollowFactor;
 
     private bool isFollowing;
 
@@ -17,9 +18,13 @@ public class ThirdPersonCameraController : MonoBehaviour
 
             float targetRotationRadians = target.rotation.eulerAngles.y * Mathf.PI / 180;
 
+            float normalisedTargetPitch = target.rotation.eulerAngles.x > 180 ? target.rotation.eulerAngles.x - 360 : target.rotation.eulerAngles.x;
+
+            Debug.Log(normalisedTargetPitch);
+
             transform.position = new Vector3(
                 target.position.x + frontOffset * Mathf.Sin(targetRotationRadians),
-                target.position.y + upOffset,
+                target.position.y + upOffset + normalisedTargetPitch * pitchFollowFactor,
                 target.position.z + frontOffset * Mathf.Cos(targetRotationRadians)
             );
 
