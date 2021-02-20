@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
 
-public class DroneController : MonoBehaviour
+public class DroneController : MonoBehaviourPunCallbacks
 {
     [SerializeField] private float thrustMultiplier;
     [SerializeField] private float yawSpeed;
