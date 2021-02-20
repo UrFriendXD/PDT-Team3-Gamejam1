@@ -40,6 +40,22 @@ public class PlaneController : MonoBehaviourPunCallbacks
 
         controls.PlaneFlight.Pitch.performed += ctx => pitch = ctx.ReadValue<float>();
         controls.PlaneFlight.Pitch.canceled += ctx => pitch = 0;
+
+        controls.PlaneFlight.Pitch.AddBinding("<Mouse>/position/y")
+            .WithProcessor("normalize(" +
+                "min=0," +
+                "max=" + Screen.height + "," +
+                "zero=" + Mathf.Floor(Screen.height / 2) +
+            ")")
+            .WithGroup("KB&M");
+
+        controls.PlaneFlight.Yaw.AddBinding("<Mouse>/position/x")
+            .WithProcessor("normalize(" +
+                "min=0," +
+                "max=" + Screen.width + "," +
+                "zero=" + Mathf.Floor(Screen.width / 2) +
+            ")")
+            .WithGroup("KB&M");
     }
 
     void Update()
