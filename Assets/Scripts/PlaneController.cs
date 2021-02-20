@@ -71,13 +71,15 @@ public class PlaneController : MonoBehaviourPunCallbacks
         );
     }
 
-    void OnEnable()
+    public override void OnEnable()
     {
+        base.OnEnable();
         controls.Enable();
     }
 
-    void OnDisable()
+    public override void OnDisable()
     {
+        base.OnDisable();
         controls.Disable();
     }
 }
