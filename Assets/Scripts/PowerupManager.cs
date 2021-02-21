@@ -65,12 +65,12 @@ public class PowerupManager : MonoBehaviour
     {
         if (currentPowerup != null)
         {
-            Instantiate(
+            GameObject bullet = Instantiate(
                 currentPowerup,
                 transform.position,
                 transform.rotation
             );
-
+            
             //currentPowerup = null;
         }
     }

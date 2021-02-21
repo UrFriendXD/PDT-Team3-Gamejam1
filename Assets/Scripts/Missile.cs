@@ -31,7 +31,7 @@ public class Missile : MonoBehaviour
 
     private void Update()
     {
-        transform.Translate(transform.forward * speed * Time.deltaTime);
+        transform.Translate(transform.forward * (speed * Time.deltaTime), Space.World);
     }
 
     private void OnEnable()

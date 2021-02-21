@@ -184,11 +184,15 @@
           <e p="DroneController.cs" t="Include" />
           <e p="GameManager.cs" t="Include" />
           <e p="Launcher.cs" t="Include" />
+          <e p="Missile.cs" t="Include" />
           <e p="PlaneController.cs" t="Include" />
           <e p="PlayerAnimationManager.cs" t="Include" />
           <e p="PlayerManager.cs" t="Include" />
           <e p="PlayerNameInputField.cs" t="Include" />
           <e p="PlayerUI.cs" t="Include" />
+          <e p="Powerup.cs" t="Include" />
+          <e p="PowerupDisplay.cs" t="Include" />
+          <e p="PowerupManager.cs" t="Include" />
           <e p="ThirdPersonCameraController.cs" t="Include" />
         </e>
         <e p="TextMesh Pro" t="Include">
