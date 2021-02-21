@@ -57,6 +57,14 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Fire"",
+                    ""type"": ""Button"",
+                    ""id"": ""9f7af6eb-8300-44ab-a292-ed635a18323b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -224,6 +232,39 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""action"": ""Pause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b14c4331-4c33-4557-87f4-75d99a858b96"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""GamePad"",
+                    ""action"": ""Fire"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a50ac3b7-b9a1-4ac0-aeb0-2c47ceccb655"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KB&M"",
+                    ""action"": ""Fire"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9e0bf3e3-d121-4680-80bb-66261558afda"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KB&M"",
+                    ""action"": ""Fire"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -265,6 +306,7 @@ public class @Controls : IInputActionCollection, IDisposable
         m_PlaneFlight_Pitch = m_PlaneFlight.FindAction("Pitch", throwIfNotFound: true);
         m_PlaneFlight_Strafe = m_PlaneFlight.FindAction("Strafe", throwIfNotFound: true);
         m_PlaneFlight_Pause = m_PlaneFlight.FindAction("Pause", throwIfNotFound: true);
+        m_PlaneFlight_Fire = m_PlaneFlight.FindAction("Fire", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -319,6 +361,7 @@ public class @Controls : IInputActionCollection, IDisposable
     private readonly InputAction m_PlaneFlight_Pitch;
     private readonly InputAction m_PlaneFlight_Strafe;
     private readonly InputAction m_PlaneFlight_Pause;
+    private readonly InputAction m_PlaneFlight_Fire;
     public struct PlaneFlightActions
     {
         private @Controls m_Wrapper;
@@ -328,6 +371,7 @@ public class @Controls : IInputActionCollection, IDisposable
         public InputAction @Pitch => m_Wrapper.m_PlaneFlight_Pitch;
         public InputAction @Strafe => m_Wrapper.m_PlaneFlight_Strafe;
         public InputAction @Pause => m_Wrapper.m_PlaneFlight_Pause;
+        public InputAction @Fire => m_Wrapper.m_PlaneFlight_Fire;
         public InputActionMap Get() { return m_Wrapper.m_PlaneFlight; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -352,6 +396,9 @@ public class @Controls : IInputActionCollection, IDisposable
                 @Pause.started -= m_Wrapper.m_PlaneFlightActionsCallbackInterface.OnPause;
                 @Pause.performed -= m_Wrapper.m_PlaneFlightActionsCallbackInterface.OnPause;
                 @Pause.canceled -= m_Wrapper.m_PlaneFlightActionsCallbackInterface.OnPause;
+                @Fire.started -= m_Wrapper.m_PlaneFlightActionsCallbackInterface.OnFire;
+                @Fire.performed -= m_Wrapper.m_PlaneFlightActionsCallbackInterface.OnFire;
+                @Fire.canceled -= m_Wrapper.m_PlaneFlightActionsCallbackInterface.OnFire;
             }
             m_Wrapper.m_PlaneFlightActionsCallbackInterface = instance;
             if (instance != null)
@@ -371,6 +418,9 @@ public class @Controls : IInputActionCollection, IDisposable
                 @Pause.started += instance.OnPause;
                 @Pause.performed += instance.OnPause;
                 @Pause.canceled += instance.OnPause;
+                @Fire.started += instance.OnFire;
+                @Fire.performed += instance.OnFire;
+                @Fire.canceled += instance.OnFire;
             }
         }
     }
@@ -400,5 +450,6 @@ public class @Controls : IInputActionCollection, IDisposable
         void OnPitch(InputAction.CallbackContext context);
         void OnStrafe(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
+        void OnFire(InputAction.CallbackContext context);
     }
 }
