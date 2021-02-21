@@ -21,8 +21,6 @@ public class ThirdPersonCameraController : MonoBehaviour
 
         float normalisedTargetPitch = target.rotation.eulerAngles.x > 180 ? target.rotation.eulerAngles.x - 360 : target.rotation.eulerAngles.x;
 
-        Debug.Log(normalisedTargetPitch);
-
         transform.position = new Vector3(
             target.position.x + frontOffset * Mathf.Sin(targetRotationRadians),
             target.position.y + upOffset + normalisedTargetPitch * pitchFollowFactor,
