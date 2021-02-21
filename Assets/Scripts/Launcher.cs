@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace PUNTutorial
 {
@@ -142,7 +143,9 @@ namespace PUNTutorial
                 
                 // #Critical
                 // Load the Room Level.
-                PhotonNetwork.LoadLevel("SampleScene");
+                // Change the level load to lobby, lobby will then go into level
+                //Debug.Log(SceneManager.GetSceneByBuildIndex(1).name);
+                PhotonNetwork.LoadLevel("Level 1");
             }
         }
 

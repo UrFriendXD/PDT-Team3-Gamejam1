@@ -14,7 +14,6 @@ public class PlaneController : MonoBehaviourPunCallbacks
     Controls controls;
 
     private float throttle;
-    private float reverseThrottle;
     private Vector2 strafe;
     private float yaw;
     private float pitch;
@@ -33,9 +32,6 @@ public class PlaneController : MonoBehaviourPunCallbacks
         controls.PlaneFlight.Throttle.performed += ctx => throttle = ctx.ReadValue<float>();
         controls.PlaneFlight.Throttle.canceled += ctx => throttle = 0;
 
-        controls.PlaneFlight.ReverseThrottle.performed += ctx => reverseThrottle = ctx.ReadValue<float>();
-        controls.PlaneFlight.ReverseThrottle.canceled += ctx => reverseThrottle = 0;
-
         controls.PlaneFlight.Strafe.performed += ctx => strafe = ctx.ReadValue<Vector2>();
         controls.PlaneFlight.Strafe.canceled += ctx => strafe = Vector2.zero;
 
@@ -44,11 +40,27 @@ public class PlaneController : MonoBehaviourPunCallbacks
 
         controls.PlaneFlight.Pitch.performed += ctx => pitch = ctx.ReadValue<float>();
         controls.PlaneFlight.Pitch.canceled += ctx => pitch = 0;
+
+        controls.PlaneFlight.Pitch.AddBinding("<Mouse>/position/y")
+            .WithProcessor("normalize(" +
+                "min=0," +
+                "max=" + Screen.height + "," +
+                "zero=" + Mathf.Floor(Screen.height / 2) +
+            ")")
+            .WithGroup("KB&M");
+
+        controls.PlaneFlight.Yaw.AddBinding("<Mouse>/position/x")
+            .WithProcessor("normalize(" +
+                "min=0," +
+                "max=" + Screen.width + "," +
+                "zero=" + Mathf.Floor(Screen.width / 2) +
+            ")")
+            .WithGroup("KB&M");
     }
 
     void Update()
     {
-        rb.AddForce(transform.forward * (throttle - reverseThrottle) * thrustMultiplier);
+        rb.AddForce(transform.forward * throttle * thrustMultiplier);
         rb.AddForce(transform.up * strafe.y * thrustMultiplier);
         rb.AddForce(transform.right * strafe.x * thrustMultiplier);
 
@@ -59,13 +71,15 @@ public class PlaneController : MonoBehaviourPunCallbacks
         );
     }
 
-    void OnEnable()
+    public override void OnEnable()
     {
+        base.OnEnable();
         controls.Enable();
     }
 
-    void OnDisable()
+    public override void OnDisable()
     {
+        base.OnDisable();
         controls.Disable();
     }
 }
