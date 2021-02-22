@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &4142599546169598732
+--- !u!1 &1933234842060517506
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,48 +8,47 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8701807460787328726}
-  - component: {fileID: 7133357163664082201}
-  - component: {fileID: 590819629174732326}
-  - component: {fileID: 2528442555188620719}
-  - component: {fileID: 8123599125862561096}
-  - component: {fileID: 1028481072612960768}
+  - component: {fileID: 1933234842060517759}
+  - component: {fileID: 1933234842060517758}
+  - component: {fileID: 1933234842060517505}
+  - component: {fileID: 1933234842060517504}
+  - component: {fileID: 1933234842060517507}
   m_Layer: 0
-  m_Name: Checkpoint
+  m_Name: Explosion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &8701807460787328726
+--- !u!4 &1933234842060517759
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4142599546169598732}
+  m_GameObject: {fileID: 1933234842060517506}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.340553, y: 210.8, z: -221}
-  m_LocalScale: {x: 10, y: 10, z: 10}
+  m_LocalPosition: {x: -14.464222, y: 28.09524, z: -15.973948}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &7133357163664082201
+--- !u!33 &1933234842060517758
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4142599546169598732}
-  m_Mesh: {fileID: -8803937527578110353, guid: db867eb4dd2ccd44396549c8d7c45df2, type: 3}
---- !u!23 &590819629174732326
+  m_GameObject: {fileID: 1933234842060517506}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &1933234842060517505
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4142599546169598732}
+  m_GameObject: {fileID: 1933234842060517506}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -84,44 +83,33 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &2528442555188620719
-MeshCollider:
+--- !u!135 &1933234842060517504
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4142599546169598732}
+  m_GameObject: {fileID: 1933234842060517506}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -8803937527578110353, guid: db867eb4dd2ccd44396549c8d7c45df2, type: 3}
---- !u!114 &8123599125862561096
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1933234842060517507
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4142599546169598732}
+  m_GameObject: {fileID: 1933234842060517506}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18dce4f3754a96e48a731048825b8ddd, type: 3}
+  m_Script: {fileID: 11500000, guid: cbdfde6351df6f242ba17d0dbe1a88d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultColor: {r: 0, g: 0, b: 0, a: 0}
-  activeColor: {r: 1, g: 1, b: 0, a: 0}
---- !u!65 &1028481072612960768
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4142599546169598732}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.75, y: 1.75, z: 0.01}
-  m_Center: {x: 0, y: 0, z: 0}
+  maxSize: 4
+  attackTime: 1
+  sustainTime: 2
+  releaseTime: 0.5
+  slowdown: 5

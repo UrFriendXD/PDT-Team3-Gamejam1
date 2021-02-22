@@ -70,8 +70,8 @@ public class PowerupManager : MonoBehaviour
                 transform.position,
                 transform.rotation
             );
-            
-            //currentPowerup = null;
+
+            currentPowerup = null;
         }
     }
 

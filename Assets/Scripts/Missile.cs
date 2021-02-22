@@ -8,6 +8,7 @@ public class Missile : MonoBehaviour
     #region Private Serializable Fields
 
     [SerializeField] private float speed;
+    [SerializeField] private GameObject explosion;
 
     #endregion
 
@@ -31,7 +32,7 @@ public class Missile : MonoBehaviour
 
     private void Update()
     {
-        transform.Translate(transform.forward * (speed * Time.deltaTime), Space.World);
+        transform.Translate(transform.forward * speed * Time.deltaTime, Space.World);
     }
 
     private void OnEnable()
@@ -50,6 +51,8 @@ public class Missile : MonoBehaviour
 
     private void Detonate()
     {
+        Instantiate(explosion, transform.position, Quaternion.identity);
+
         Destroy(gameObject);
     }
 
