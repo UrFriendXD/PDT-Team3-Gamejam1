@@ -65,6 +65,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     public void LeaveRoom()
     {
         Debug.Log("leaving room");
+        Cursor.lockState = CursorLockMode.None;
         PhotonNetwork.LeaveRoom();
     }
 
