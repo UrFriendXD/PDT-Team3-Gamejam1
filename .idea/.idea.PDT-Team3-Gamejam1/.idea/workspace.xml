@@ -4,23 +4,14 @@
     <list default="true" id="35e1ca94-6602-4458-be73-84dce55e56d7" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.PDT-Team3-Gamejam1/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PDT-Team3-Gamejam1/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.PDT-Team3-Gamejam1/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PDT-Team3-Gamejam1/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Leave Button.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Leave Button.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Player UI.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Player UI.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/TestCanvas.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/TestCanvas.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Missile.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Missile.prefab.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Resources/Plane.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Plane.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Launcher.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Launcher.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlayerNameInputField.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlayerNameInputField.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlayerUI.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlayerUI.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Missile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Missile.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlayerManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PlayerManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PowerupManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PowerupManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,16 +39,16 @@
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
-      <option value="$PROJECT_DIR$/Assets/Scripts/PlayerManager.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/ThirdPersonCameraController.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/PlaneController.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Missile.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/PowerupManager.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Launcher.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/PlayerListing.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/UI/PlayerListingMenu.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/LobbyManager.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/PowerupManager.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Missile.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/PlayerManager.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/ThirdPersonCameraController.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1ok3M7SFbelGkM2aU6r1fO9dxyW" />
@@ -115,7 +106,7 @@
       <updated>1613816714239</updated>
       <workItem from="1613816721069" duration="1735000" />
       <workItem from="1613907583561" duration="1314000" />
-      <workItem from="1613986072362" duration="7675000" />
+      <workItem from="1613986072362" duration="10675000" />
     </task>
     <servers />
   </component>

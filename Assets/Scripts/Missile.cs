@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -32,7 +33,7 @@ public class Missile : MonoBehaviour
 
     private void Update()
     {
-        transform.Translate(transform.forward * speed * Time.deltaTime, Space.World);
+        transform.Translate(transform.forward * (speed * Time.deltaTime), Space.World);
     }
 
     private void OnEnable()
@@ -53,7 +54,8 @@ public class Missile : MonoBehaviour
     {
         Instantiate(explosion, transform.position, Quaternion.identity);
 
-        Destroy(gameObject);
+        // Destroy object on the network
+        PhotonNetwork.Destroy(gameObject);
     }
 
     #endregion

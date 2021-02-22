@@ -85,7 +85,7 @@ public class GameManager : MonoBehaviourPunCallbacks
             {
                 Debug.LogFormat("We are Instantiating LocalPlayer from {0}", SceneManager.GetActiveScene().name);
                 // we're in a room. spawn a character for the local player. it gets synced by using PhotonNetwork.Instantiate
-                PhotonNetwork.Instantiate(playerPrefab.name, new Vector3(0f, 5f, 0f), Quaternion.identity, 0);
+                PhotonNetwork.Instantiate(playerPrefab.name, new Vector3(0f, 5f, 0f), Quaternion.identity);
             }
             else
             {
@@ -94,18 +94,6 @@ public class GameManager : MonoBehaviourPunCallbacks
         }
 
         Cursor.lockState = CursorLockMode.Confined;
-    }
-
-    private void LoadArena()
-    {
-        if (!PhotonNetwork.IsMasterClient)
-        {
-            Debug.LogError("PhotonNetwork : Trying to Load a level but we are not the master Client");
-        }
-        Debug.LogFormat("PhotonNetwork : Loading Level : {0}", PhotonNetwork.CurrentRoom.PlayerCount);
-        //PhotonNetwork.LoadLevel("Room for " + PhotonNetwork.CurrentRoom.PlayerCount);
-        // Change later on to the level select stuff
-        PhotonNetwork.LoadLevel(SceneManager.GetSceneByBuildIndex(1).name);
     }
 
     #endregion
