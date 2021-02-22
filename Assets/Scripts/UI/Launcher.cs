@@ -145,7 +145,7 @@ namespace PUNTutorial
                 // Load the Room Level.
                 // Change the level load to lobby, lobby will then go into level
                 //Debug.Log(SceneManager.GetSceneByBuildIndex(1).name);
-                PhotonNetwork.LoadLevel("Level 1");
+                PhotonNetwork.LoadLevel("Lobby");
             }
         }
 

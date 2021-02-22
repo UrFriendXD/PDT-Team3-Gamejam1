@@ -8,11 +8,8 @@ using UnityEngine;
 public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
 {
     #region Private Fields
-
-    [Tooltip("The beams GameObject to control")] [SerializeField]
-    //private GameObject beams;
-
     private PlaneController playerController; // Subject to change, needs to be a overall controller type
+    private PowerupManager _powerupManager;
 
     private bool _isFiring;
     private bool _isPaused;
@@ -28,7 +25,7 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
     public static GameObject LocalPlayerInstance;
 
     [Tooltip("The Player's UI GameObject Prefab")] [SerializeField]
-    public GameObject PlayerUIPrefab;
+    private GameObject PlayerUIPrefab;
 
     #endregion
 
@@ -53,10 +50,11 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
         }
 
         playerController = GetComponent<PlaneController>();
-        
+        _powerupManager = GetComponent<PowerupManager>();
+
         // #Critical
         // We flag as don't destroy on load so that instance survives level synchronization, thus giving a seamless experience when levels load.
-        DontDestroyOnLoad(gameObject);
+        // DontDestroyOnLoad(gameObject);
     }
 
     private void Start()
@@ -65,6 +63,7 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
         if (!photonView.IsMine)
         {
             playerController.enabled = false;
+            _powerupManager.enabled = false;
         }
         
         // Should move to it's own class :3
@@ -107,11 +106,12 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
 
         if (photonView.IsMine)
         {
-            //ProcessInputs();
-            if (health <= 0f)
-            {
-                GameManager.Instance.LeaveRoom();
-            }
+            // Old stuff from tutorial.
+            // //ProcessInputs();
+            // if (health <= 0f)
+            // {
+            //     GameManager.Instance.LeaveRoom();
+            // }
         }
     }
 
@@ -182,8 +182,6 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
 #endif
     #endregion
 
-
-    
     #region Private Methods
 
 #if UNITY_5_4_OR_NEWER

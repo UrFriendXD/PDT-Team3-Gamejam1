@@ -145,7 +145,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startPowerup: {fileID: 5061897685588312778, guid: 1abbc928568f3864796c0457eddfebd8, type: 3}
-  instantiationOffset: {x: 0, y: 0, z: 1}
 --- !u!114 &6979768966148657305
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -198,7 +197,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a80c85df47bed564bab9fd3a38326613, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerController: {fileID: 0}
   health: 1
   PlayerUIPrefab: {fileID: 2712096027144620182, guid: fb4b6992b9f273f4fa27b7fda01b90f6, type: 3}
 --- !u!114 &5955128626499296082
@@ -230,7 +228,7 @@ MonoBehaviour:
     InterpolateRotateTowardsSpeed: 180
     InterpolateLerpSpeed: 5
   m_ScaleModel:
-    SynchronizeEnabled: 0
+    SynchronizeEnabled: 1
     InterpolateOption: 0
     InterpolateMoveTowardsSpeed: 1
     InterpolateLerpSpeed: 0
@@ -246,7 +244,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Actions: {fileID: 0}
+  m_Actions: {fileID: -944628639613478452, guid: 8878ce6f004f65e4780046848977cca5, type: 3}
   m_NotificationBehavior: 0
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:

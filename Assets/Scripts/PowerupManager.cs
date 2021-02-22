@@ -1,14 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PowerupManager : MonoBehaviour
+public class PowerupManager : MonoBehaviourPun
 {
     #region Private Serializable Fields
 
     [SerializeField] private GameObject startPowerup;
-    [SerializeField] private Vector3 instantiationOffset;
 
     #endregion
 
@@ -36,7 +36,7 @@ public class PowerupManager : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "PowerupDisplay")
+        if (other.CompareTag("PowerupDisplay"))
         {
             PowerupDisplay displayScript = other.GetComponent<PowerupDisplay>();
 
@@ -65,12 +65,14 @@ public class PowerupManager : MonoBehaviour
     {
         if (currentPowerup != null)
         {
-            GameObject bullet = Instantiate(
-                currentPowerup,
-                transform.position,
-                transform.rotation
-            );
-
+            // GameObject bullet = Instantiate(
+            //     currentPowerup,
+            //     transform.position,
+            //     transform.rotation
+            // );
+            
+            // Networked instantiation
+            PhotonNetwork.Instantiate(currentPowerup.name, transform.position, transform.rotation, 0);
             currentPowerup = null;
         }
     }
