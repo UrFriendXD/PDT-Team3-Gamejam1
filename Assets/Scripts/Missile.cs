@@ -4,7 +4,7 @@ using Photon.Pun;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Missile : MonoBehaviour
+public class Missile : MonoBehaviourPun
 {
     #region Private Serializable Fields
 
@@ -55,7 +55,10 @@ public class Missile : MonoBehaviour
         Instantiate(explosion, transform.position, Quaternion.identity);
 
         // Destroy object on the network
-        PhotonNetwork.Destroy(gameObject);
+        if (photonView.IsMine)
+        {
+            PhotonNetwork.Destroy(gameObject);
+        }
     }
 
     #endregion

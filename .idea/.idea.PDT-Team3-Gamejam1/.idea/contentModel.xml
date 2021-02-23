@@ -200,6 +200,7 @@
             <e p="PlayerNameInputField.cs" t="Include" />
             <e p="PlayerUI.cs" t="Include" />
           </e>
+          <e p="VehicleController.cs" t="Include" />
         </e>
         <e p="TextMesh Pro" t="Include">
           <e p="Fonts" t="Include">

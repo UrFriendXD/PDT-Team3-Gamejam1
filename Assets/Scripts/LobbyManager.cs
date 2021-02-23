@@ -60,8 +60,6 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         if (PhotonNetwork.IsMasterClient)
         {
             Debug.LogFormat("OnPlayerEnteredRoom IsMasterClient {0}", PhotonNetwork.IsMasterClient); // Called before OnPlayerLeftRoom
-            
-            // Remove their name off the list
         }
         UpdatePlayerCount();
     }
@@ -112,6 +110,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         }
     }
 
+    // Updates player count UI
     private void UpdatePlayerCount()
     {
         playerCount = PhotonNetwork.PlayerList.Length;
@@ -127,7 +126,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
             return;
         }
         Debug.LogFormat("PhotonNetwork : Loading Level : {0}", PhotonNetwork.CurrentRoom.PlayerCount);
-        // Change later on to the level select stuff
+        // Change nextLevelSceneIndex later on to the level select stuff in inspector or code
         PhotonNetwork.CurrentRoom.IsOpen = false;
         PhotonNetwork.LoadLevel(nextSceneIndex);
     }
