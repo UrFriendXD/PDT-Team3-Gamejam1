@@ -67,16 +67,16 @@ public class PlaneController : VehicleController
 
     protected override void MovePlayer()
     {
-        rb.AddForce(transform.forward * (throttle * thrustMultiplier));
-        rb.AddForce(transform.up * (strafe.y * thrustMultiplier));
-        rb.AddForce(transform.right * (strafe.x * thrustMultiplier));
+        rb.AddForce(transform.forward * (throttle * thrustMultiplier) * Time.deltaTime);
+        rb.AddForce(transform.up * (strafe.y * thrustMultiplier) * Time.deltaTime);
+        rb.AddForce(transform.right * (strafe.x * thrustMultiplier) * Time.deltaTime);
     }
 
     protected override void RotatePlayer()
     {
         transform.rotation = Quaternion.Euler(
             pitch * maxTurn * (invertPitch ? -1 : 1),
-            transform.rotation.eulerAngles.y + yaw * yawSpeed,
+            transform.rotation.eulerAngles.y + yaw * yawSpeed * Time.deltaTime,
             yaw * maxTurn * -1
         );
     }
