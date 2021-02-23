@@ -75,9 +75,9 @@ public class PlaneController : VehicleController
     protected override void RotatePlayer()
     {
         transform.rotation = Quaternion.Euler(
-            pitch * maxTurn * (invertPitch ? -1 : 1) * Time.deltaTime,
+            pitch * maxTurn * (invertPitch ? -1 : 1),
             transform.rotation.eulerAngles.y + yaw * yawSpeed * Time.deltaTime,
-            yaw * maxTurn * -1 * Time.deltaTime
+            yaw * maxTurn * -1
         );
     }
 

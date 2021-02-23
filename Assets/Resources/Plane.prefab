@@ -157,8 +157,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a70e7ec3d3352a843b5f12daa9a7f320, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thrustMultiplier: 20
-  yawSpeed: 1
+  thrustMultiplier: 3000
+  yawSpeed: 200
   maxTurn: 45
   invertPitch: 1
 --- !u!114 &6434246079015292321
