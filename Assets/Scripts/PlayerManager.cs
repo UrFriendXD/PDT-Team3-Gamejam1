@@ -8,7 +8,7 @@ using UnityEngine;
 public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
 {
     #region Private Fields
-    private PlaneController playerController; // Subject to change, needs to be a overall controller type
+    private VehicleController playerController; // Subject to change, needs to be a overall controller type
     private PowerupManager _powerupManager;
 
     private bool _isFiring;
@@ -90,10 +90,9 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
             Debug.LogWarning("<Color=Red><a>Missing</a></Color> PlayerUiPrefab reference on player Prefab.", this);
         }
 
-#if UNITY_5_4_OR_NEWER
-        // Unity 5.4 has a new scene management. Register a method to call CalledOnLevelWasLoaded.
+        // Register a method to call CalledOnLevelWasLoaded.
         UnityEngine.SceneManagement.SceneManager.sceneLoaded += OnSceneLoaded;
-#endif
+
     }
 
     private void Update()
@@ -152,15 +151,7 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
 
         health -= 0.1f * Time.deltaTime;
     }
-
-#if !UNITY_5_4_OR_NEWER
-    //See CalledOnLevelWasLoaded. Outdated in Unity 5.4.
-    private void OnLevelWasLoaded(int level)
-    {
-        CalledOnLevelWasLoaded(level);
-    }
-#endif
-
+    
     private void CalledOnLevelWasLoaded(int level)
     {
         if (!Physics.Raycast(transform.position, -Vector3.up, 5f))
@@ -168,28 +159,25 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
             transform.position = new Vector3(0f, 5f, 0f);
         }
 
-        GameObject _uiGo = Instantiate(PlayerUIPrefab);
-        _uiGo.SendMessage("SetTarget", this, SendMessageOptions.RequireReceiver);
+        GameObject uiGo = Instantiate(PlayerUIPrefab);
+        uiGo.SendMessage("SetTarget", this, SendMessageOptions.RequireReceiver);
     }
     
-#if UNITY_5_4_OR_NEWER
     public override void OnDisable()
     {
         // Always call the base to remove callbacks
         base.OnDisable();
         UnityEngine.SceneManagement.SceneManager.sceneLoaded -= OnSceneLoaded;
     }
-#endif
+    
     #endregion
 
     #region Private Methods
-
-#if UNITY_5_4_OR_NEWER
+    
     private void OnSceneLoaded(UnityEngine.SceneManagement.Scene scene, UnityEngine.SceneManagement.LoadSceneMode loadingMode)
     {
         CalledOnLevelWasLoaded(scene.buildIndex);
     }
-#endif
 
     private void OnPause()
     {
@@ -204,29 +192,6 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
             Cursor.lockState = CursorLockMode.None;
         }
     }
-
-    #endregion
-    
-    #region Custom
-
-    // private void ProcessInputs()
-    // {
-    //     if (Input.GetButtonDown("Fire1"))
-    //     {
-    //         if (!_isFiring)
-    //         {
-    //             _isFiring = true;
-    //         }
-    //     }
-    //
-    //     if (Input.GetButtonUp("Fire1"))
-    //     {
-    //         if (_isFiring)
-    //         {
-    //             _isFiring = false;
-    //         }
-    //     }
-    // }
 
     #endregion
 
