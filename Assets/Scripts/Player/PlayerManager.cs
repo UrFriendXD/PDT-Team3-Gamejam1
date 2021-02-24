@@ -8,7 +8,7 @@ using UnityEngine;
 public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
 {
     #region Private Fields
-    private VehicleController playerController; // Subject to change, needs to be a overall controller type
+    private VehicleController playerController;
     private PowerupManager _powerupManager;
 
     private bool _isFiring;
@@ -33,15 +33,6 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
 
     private void Awake()
     {
-        // if (beams == null)
-        // {
-        //     Debug.LogError("<Color=Red><a>Missing</a></Color> Beams Reference.", this);
-        // }
-        // else
-        // {
-        //     beams.SetActive(false);
-        // }
-        
         // #Important
         // Use in GameManager.cs: we keep track of the localPlayerInstance to prevent instantiation when levels are synchronized
         if (photonView.IsMine)
@@ -59,13 +50,14 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
 
     private void Start()
     {
+        playerController.enabled = false;
+        _powerupManager.enabled = false;
 
         if (!photonView.IsMine)
         {
-            playerController.enabled = false;
-            _powerupManager.enabled = false;
+            GetComponentInChildren<Canvas>().gameObject.SetActive(false);
         }
-        
+
         // Should move to it's own class :3
         ThirdPersonCameraController cameraController = Camera.main.GetComponent<ThirdPersonCameraController>();
         if (cameraController != null)
@@ -82,8 +74,8 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
 
         if (PlayerUIPrefab != null)
         {
-            GameObject _uiGo = Instantiate(PlayerUIPrefab);
-            _uiGo.SendMessage("SetTarget", this, SendMessageOptions.RequireReceiver);
+            GameObject uiGo = Instantiate(PlayerUIPrefab);
+            uiGo.SendMessage("SetTarget", this, SendMessageOptions.RequireReceiver);
         }
         else
         {
@@ -97,20 +89,8 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
 
     private void Update()
     {
-        // // Trigger beams active state
-        // if (beams != null && _isFiring != beams.activeInHierarchy)
-        // {
-        //     beams.SetActive(_isFiring);
-        // }
-
         if (photonView.IsMine)
         {
-            // Old stuff from tutorial.
-            // //ProcessInputs();
-            // if (health <= 0f)
-            // {
-            //     GameManager.Instance.LeaveRoom();
-            // }
         }
     }
 
@@ -123,15 +103,6 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
         {
             return;
         }
-        
-        // We are only interested in Beamers
-        // We should be using tags for the sake of distribution, let's simply check by name.
-        if (!other.name.Contains("Beam"))
-        {
-            return;
-        }
-
-        health -= 0.1f;
     }
 
     private void OnTriggerStay(Collider other)
@@ -141,18 +112,9 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
         {
             return;
         }
-        
-        // We are only interested in Beamers
-        // We should be using tags for the sake of distribution, let's simply check by name.
-        if (!other.name.Contains("Beam"))
-        {
-            return;
-        }
-
-        health -= 0.1f * Time.deltaTime;
     }
     
-    private void CalledOnLevelWasLoaded(int level)
+    private void CalledOnLevelWasLoaded()
     {
         if (!Physics.Raycast(transform.position, -Vector3.up, 5f))
         {
@@ -176,7 +138,7 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
     
     private void OnSceneLoaded(UnityEngine.SceneManagement.Scene scene, UnityEngine.SceneManagement.LoadSceneMode loadingMode)
     {
-        CalledOnLevelWasLoaded(scene.buildIndex);
+        CalledOnLevelWasLoaded();
     }
 
     private void OnPause()
@@ -195,11 +157,22 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
 
     #endregion
 
+    #region Public Methods
+
+    // public void StartGame()
+    // {
+    //     playerController.enabled = true;
+    //     _powerupManager.enabled = true;
+    // }
+
+    #endregion
+
     #region IPunObservable implemetation
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
-        if (stream.IsWriting)
+        // Kept here incase we need it for future use
+        /*if (stream.IsWriting)
         {
             // We own this player: send the others our data
             stream.SendNext(_isFiring);
@@ -210,7 +183,7 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
             // Network player, receive data
             _isFiring = (bool) stream.ReceiveNext();
             health = (float) stream.ReceiveNext();
-        }
+        }*/
     }
 
     #endregion

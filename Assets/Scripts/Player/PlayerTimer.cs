@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -10,7 +11,7 @@ public class PlayerTimer : MonoBehaviour
 
     [SerializeField] private UnityEvent OnEndCountdown;
     [SerializeField] private UnityEvent OnTimerStopped;
-    [SerializeField] private Text countdownText;
+    [SerializeField] private TextMeshProUGUI countdownText;
     [SerializeField] private int countdownSeconds;
     [SerializeField] private string startMessage;
     [SerializeField] private bool startCountdownOnAwake;

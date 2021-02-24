@@ -1,26 +1,29 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using Photon.Pun;
 using Photon.Realtime;
+using TMPro;
 using UnityEngine;
-using UnityEngine.Experimental.GlobalIllumination;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
-public class GameManager : MonoBehaviourPunCallbacks
+public class LobbyManager : MonoBehaviourPunCallbacks
 {
     #region Public Fields
 
-    public static GameManager Instance;
+    [Tooltip("The start game button")]
+    public GameObject startGameButton;
 
-    [Tooltip("The prefab to use for representing the player")]
-    public GameObject playerPrefab;
+    #endregion
+
+    #region Private fields
     
-    private void Awake()
-    {
-        Instance = this;
-        
-    }
+
+    [SerializeField] private TextMeshProUGUI playerCountDisplay;
+    [SerializeField] private int nextSceneIndex;
+
+    private int playerCount;
+    private int roomSize;
 
     #endregion
     
@@ -41,9 +44,9 @@ public class GameManager : MonoBehaviourPunCallbacks
         if (PhotonNetwork.IsMasterClient)
         {
             Debug.LogFormat("OnPlayerEnteredRoom IsMasterClient {0}", PhotonNetwork.IsMasterClient); // Called before OnPlayerLeftRoom
-            
-            //LoadArena();
         }
+        UpdatePlayerCount();
+
     }
 
     public override void OnPlayerLeftRoom(Player otherPlayer)
@@ -53,9 +56,8 @@ public class GameManager : MonoBehaviourPunCallbacks
         if (PhotonNetwork.IsMasterClient)
         {
             Debug.LogFormat("OnPlayerEnteredRoom IsMasterClient {0}", PhotonNetwork.IsMasterClient); // Called before OnPlayerLeftRoom
-            
-            //LoadArena();
         }
+        UpdatePlayerCount();
     }
 
     #endregion
@@ -65,7 +67,6 @@ public class GameManager : MonoBehaviourPunCallbacks
     public void LeaveRoom()
     {
         Debug.Log("leaving room");
-        Cursor.lockState = CursorLockMode.None;
         PhotonNetwork.LeaveRoom();
     }
 
@@ -75,25 +76,34 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     private void Start()
     {
-        if (playerPrefab == null)
-        {
-            Debug.LogError("<Color=Red><a>Missing</a></Color> playerPrefab Reference. Please set it up in GameObject 'Game Manager'",this);
-        }
-        else
-        {
-            if (PlayerManager.LocalPlayerInstance == null)
-            {
-                Debug.LogFormat("We are Instantiating LocalPlayer from {0}", SceneManager.GetActiveScene().name);
-                // we're in a room. spawn a character for the local player. it gets synced by using PhotonNetwork.Instantiate
-                PhotonNetwork.Instantiate(playerPrefab.name, new Vector3(0f, 5f, 0f), Quaternion.identity);
-            }
-            else
-            {
-                Debug.LogFormat("Ignoring scene load for {0}", SceneManagerHelper.ActiveSceneName);
-            }
-        }
 
-        Cursor.lockState = CursorLockMode.Confined;
+        UpdatePlayerCount();
+        
+        if (!PhotonNetwork.IsMasterClient)
+        {
+            startGameButton.SetActive(false);
+        }
+    }
+
+    // Updates player count UI
+    private void UpdatePlayerCount()
+    {
+        playerCount = PhotonNetwork.PlayerList.Length;
+        roomSize = PhotonNetwork.CurrentRoom.MaxPlayers;
+        playerCountDisplay.text = playerCount + "/" + roomSize;
+    }
+
+    public void LoadNextScene()
+    {
+        if (!PhotonNetwork.IsMasterClient)
+        {
+            Debug.LogError("PhotonNetwork : Trying to Load a level but we are not the master Client");
+            return;
+        }
+        Debug.LogFormat("PhotonNetwork : Loading Level : {0}", PhotonNetwork.CurrentRoom.PlayerCount);
+        // Change nextLevelSceneIndex later on to the level select stuff in inspector or code
+        PhotonNetwork.CurrentRoom.IsOpen = false;
+        PhotonNetwork.LoadLevel(nextSceneIndex);
     }
 
     #endregion
