@@ -2,24 +2,20 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class CourseManager : MonoBehaviour
 {
     #region Private Serializable Fields
 
     [SerializeField] private CheckpointController[] checkpoints;
+    [SerializeField] public UnityEvent OnCourseComplete;
 
     #endregion
 
     #region Private Fields
 
     private int activeID = 0;
-
-    #endregion
-
-    #region Public Fields
-
-    public Action<GameObject> OnCourseComplete;
 
     #endregion
 
@@ -47,10 +43,7 @@ public class CourseManager : MonoBehaviour
 
         if (++activeID >= checkpoints.Length)
         {
-            if (OnCourseComplete != null)
-            {
-                OnCourseComplete(player);
-            }
+            OnCourseComplete.Invoke();
         } else
         {
             checkpoints[activeID].SetActive(true);
