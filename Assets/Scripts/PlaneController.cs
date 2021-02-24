@@ -1,17 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
-using Photon.Pun;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlaneController : MonoBehaviourPunCallbacks
+public class PlaneController : VehicleController
 {
-    [SerializeField] private float thrustMultiplier;
-    [SerializeField] private float yawSpeed;
-    [SerializeField] private float maxTurn;
-    [SerializeField] private bool invertPitch;
-
-    Controls controls;
+    private Controls controls;
 
     private float throttle;
     private Vector2 strafe;
@@ -29,6 +23,35 @@ public class PlaneController : MonoBehaviourPunCallbacks
     {
         rb = GetComponent<Rigidbody>();
 
+        SetupControls();
+
+        controls.PlaneFlight.Pitch.AddBinding("<Mouse>/position/y")
+            .WithProcessor("normalize(" +
+                           "min=0," +
+                           "max=" + Screen.height + "," +
+                           "zero=" + Mathf.Floor(Screen.height / 2.0f) +
+                           ")")
+            .WithGroup("KB&M");
+
+        controls.PlaneFlight.Yaw.AddBinding("<Mouse>/position/x")
+            .WithProcessor("normalize(" +
+                           "min=0," +
+                           "max=" + Screen.width + "," +
+                           "zero=" + Mathf.Floor(Screen.width / 2.0f) +
+                           ")")
+            .WithGroup("KB&M");
+    }
+
+    void Update()
+    {
+        RotatePlayer();
+        MovePlayer();
+
+    }
+
+    // Binds actions to values
+    protected override void SetupControls()
+    {
         controls.PlaneFlight.Throttle.performed += ctx => throttle = ctx.ReadValue<float>();
         controls.PlaneFlight.Throttle.canceled += ctx => throttle = 0;
 
@@ -40,33 +63,20 @@ public class PlaneController : MonoBehaviourPunCallbacks
 
         controls.PlaneFlight.Pitch.performed += ctx => pitch = ctx.ReadValue<float>();
         controls.PlaneFlight.Pitch.canceled += ctx => pitch = 0;
-
-        controls.PlaneFlight.Pitch.AddBinding("<Mouse>/position/y")
-            .WithProcessor("normalize(" +
-                "min=0," +
-                "max=" + Screen.height + "," +
-                "zero=" + Mathf.Floor(Screen.height / 2) +
-            ")")
-            .WithGroup("KB&M");
-
-        controls.PlaneFlight.Yaw.AddBinding("<Mouse>/position/x")
-            .WithProcessor("normalize(" +
-                "min=0," +
-                "max=" + Screen.width + "," +
-                "zero=" + Mathf.Floor(Screen.width / 2) +
-            ")")
-            .WithGroup("KB&M");
     }
 
-    void Update()
+    protected override void MovePlayer()
     {
-        rb.AddForce(transform.forward * throttle * thrustMultiplier);
-        rb.AddForce(transform.up * strafe.y * thrustMultiplier);
-        rb.AddForce(transform.right * strafe.x * thrustMultiplier);
+        rb.AddForce(transform.forward * (throttle * thrustMultiplier) * Time.deltaTime);
+        rb.AddForce(transform.up * (strafe.y * thrustMultiplier) * Time.deltaTime);
+        rb.AddForce(transform.right * (strafe.x * thrustMultiplier) * Time.deltaTime);
+    }
 
+    protected override void RotatePlayer()
+    {
         transform.rotation = Quaternion.Euler(
             pitch * maxTurn * (invertPitch ? -1 : 1),
-            transform.rotation.eulerAngles.y + yaw * yawSpeed,
+            transform.rotation.eulerAngles.y + yaw * yawSpeed * Time.deltaTime,
             yaw * maxTurn * -1
         );
     }

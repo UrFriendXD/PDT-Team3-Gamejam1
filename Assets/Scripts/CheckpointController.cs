@@ -1,9 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
 
-public class CheckpointController : MonoBehaviour
+public class CheckpointController : MonoBehaviourPun
 {
     #region Private Serializable Fields
 
@@ -34,9 +35,10 @@ public class CheckpointController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (active && OnCheckpointTriggered != null)
+        PhotonView view = other.gameObject.GetComponent<PhotonView>();
+        if (active && view.IsMine)
         {
-            OnCheckpointTriggered(other.gameObject);
+            OnCheckpointTriggered?.Invoke(other.gameObject);
         }
     }
 
