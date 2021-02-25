@@ -76,9 +76,9 @@ public class PlaneController : VehicleController
 
     protected override void MovePlayer()
     {
-        rb.AddForce(transform.forward * (throttle * thrustMultiplier) * Time.deltaTime);
-        rb.AddForce(transform.up * (strafe.y * thrustMultiplier) * Time.deltaTime);
-        rb.AddForce(transform.right * (strafe.x * thrustMultiplier) * Time.deltaTime);
+        rb.AddForce(transform.forward * (throttle * thrustMultiplier * Time.deltaTime));
+        rb.AddForce(transform.up * (strafe.y * thrustMultiplier * Time.deltaTime));
+        rb.AddForce(transform.right * (strafe.x * thrustMultiplier * Time.deltaTime));
     }
 
     protected override void RotatePlayer()

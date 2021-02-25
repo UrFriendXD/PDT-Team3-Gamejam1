@@ -85,18 +85,22 @@ public class GameManager : MonoBehaviourPunCallbacks
         }
     }
     
-    // When a customer property on a player changes, this gets called. When all players have loaded in, master client starts countdown to everyone
+    // When a custom property on a player changes, this gets called. When all players have loaded in, master client starts countdown to everyone
     // Need to use SetCustomProperty() for this function to be called
     public override void OnPlayerPropertiesUpdate(Player targetPlayer, Hashtable changedProps)
     {
         if (!PhotonNetwork.IsMasterClient) return;
 
-        if (!changedProps.ContainsKey("ReadyToStart")) return;
+        if (changedProps.ContainsKey("ReadyToStart"))
+        {
+            if (!AllPlayersReady) return;
 
-        if (!AllPlayersReady) return;
+            Debug.Log("All Players ready");
+            photonView.RPC("RPC_StartCountdownTimer", RpcTarget.AllBuffered);
+        }
 
-        Debug.Log("All Players ready");
-        photonView.RPC("RPC_StartCountdownTimer", RpcTarget.AllBuffered);
+        
+        
     }
 
     #endregion
@@ -108,6 +112,16 @@ public class GameManager : MonoBehaviourPunCallbacks
         Debug.Log("leaving room");
         Cursor.lockState = CursorLockMode.None;
         PhotonNetwork.LeaveRoom();
+    }
+
+    public void EnableLocalPlayer()
+    {
+        PlayerManager.LocalPlayerInstance.GetComponent<PlayerManager>().EnablePlayer();
+    }
+
+    public void DisableLocalPlayer()
+    {
+        PlayerManager.LocalPlayerInstance.GetComponent<PlayerManager>().DisablePlayer();
     }
 
     #endregion
@@ -140,7 +154,6 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     private void Update()
     {
-        PhotonNetwork.LocalPlayer.CustomProperties["ReadyToStart"] = true;
     }
 
     private void OnSceneLoaded(UnityEngine.SceneManagement.Scene scene, UnityEngine.SceneManagement.LoadSceneMode loadingMode)
@@ -153,7 +166,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     [PunRPC]
     private void RPC_StartCountdownTimer()
     {
-        PlayerManager.LocalPlayerInstance.GetComponent<PlayerTimer>().StartCountdown();
+        _timeManager.playerTimer.StartCountdown();
     }
 
     #endregion

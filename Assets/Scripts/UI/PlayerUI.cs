@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,7 +10,7 @@ public class PlayerUI : MonoBehaviour
     #region Private Fields
 
     [Tooltip("UI text to display Player's Name")] [SerializeField]
-    private Text playerNameText;
+    private TextMeshProUGUI playerNameText;
     
     [Tooltip("UI Slider to display Player's Health")] [SerializeField]
     private Slider playerHealthSlider;

@@ -56,6 +56,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         if (PhotonNetwork.IsMasterClient)
         {
             Debug.LogFormat("OnPlayerEnteredRoom IsMasterClient {0}", PhotonNetwork.IsMasterClient); // Called before OnPlayerLeftRoom
+            startGameButton.gameObject.SetActive(true);
         }
         UpdatePlayerCount();
     }

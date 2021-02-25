@@ -2,36 +2,30 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="35e1ca94-6602-4458-be73-84dce55e56d7" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Assets/Prefabs/UI/Player Time Panel.prefab" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Prefabs/UI/Player Time Panel.prefab.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Prefabs/UI/Post Game Canvas.prefab" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Prefabs/UI/Post Game Canvas.prefab.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/UI/PlayerTimePanel.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/UI/PlayerTimePanel.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.PDT-Team3-Gamejam1/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PDT-Team3-Gamejam1/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.PDT-Team3-Gamejam1/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PDT-Team3-Gamejam1/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/GameManager.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/GameManager.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/TestCanvas.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/UI/TestCanvas.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/BoostPowerup.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/BoostPowerup.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/TimeManager.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/TimeManager.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/Player UI.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/UI/Player UI.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/TestCanvas.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/UI/InGameCanvas.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/TestCanvas.prefab.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/UI/InGameCanvas.prefab.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Resources/Plane.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Plane.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Remote Missile.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Remote Missile.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Launcher.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Launcher.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Level 1.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Level 1.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/CourseManager.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/CourseManager.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/DroneController.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/DroneController.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameManager.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/LobbyManager.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/LobbyManager.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlaneController.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlaneController.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlayerAnimationManager.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlayerAnimationManager.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlayerManager.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlayerManager.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlayerTimer.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlayerTimer.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PowerupManager.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PowerupManager.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ThirdPersonCameraController.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ThirdPersonCameraController.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/Launcher.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/Launcher.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/VehicleController.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/VehicleController.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/GameManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/LobbyManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/LobbyManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/TimeManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/TimeManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/PlaneController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/PlaneController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/PlayerManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/PlayerManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/PlayerTimer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/PlayerTimer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/PlayerUI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/PlayerUI.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -52,14 +46,13 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Managers/TimeManager.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../../Uni/2020/GDS2/Final project/GDS2-Piplets/Assets/Scripts/Player/PlayerInputChecker.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../2020/PlaymakersPirates/Assets/Scripts/PlayerScripts/Movement/PlayerController.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/PlayerListingMenu.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/2FAE0A4C-BCEC-42C9-ACC6-16494AA88F69/cd/9d72417d/Component.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/0C939868-EA38-45A6-86C0-5B5DCD9BF480/04/b3ff398d/Hashtable.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/2FAE0A4C-BCEC-42C9-ACC6-16494AA88F69/c3/08783b8f/Scene.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/PlayerTimePanel.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
@@ -77,12 +70,16 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/Missile.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/PlayerManager.cs" />
       <option value="$PROJECT_DIR$/Assets/Photon/PhotonUnityNetworking/UtilityScripts/Room/CountdownTimer.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Player/PlayerTimer.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Managers/TimeManager.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/UI/Launcher.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Player/PlayerManager.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Managers/LobbyManager.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Player/PlayerManager.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Player/PlaneController.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Player/VehicleController.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/UI/PlayerUI.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Managers/GameManager.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Managers/TimeManager.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Player/PlayerTimer.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/UI/PlayerTimePanel.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1ok3M7SFbelGkM2aU6r1fO9dxyW" />
@@ -144,6 +141,7 @@
       <workItem from="1614079037374" duration="1430000" />
       <workItem from="1614080574130" duration="1286000" />
       <workItem from="1614168550462" duration="10527000" />
+      <workItem from="1614245255008" duration="9108000" />
     </task>
     <servers />
   </component>

@@ -50,13 +50,7 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
 
     private void Start()
     {
-        playerController.enabled = false;
-        _powerupManager.enabled = false;
-
-        if (!photonView.IsMine)
-        {
-            GetComponentInChildren<Canvas>().gameObject.SetActive(false);
-        }
+        DisablePlayer();
 
         // Should move to it's own class :3
         ThirdPersonCameraController cameraController = Camera.main.GetComponent<ThirdPersonCameraController>();
@@ -104,7 +98,7 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
             return;
         }
     }
-
+    
     private void OnTriggerStay(Collider other)
     {
         // we don't do anything if we are not the local player
@@ -159,11 +153,17 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
 
     #region Public Methods
 
-    // public void StartGame()
-    // {
-    //     playerController.enabled = true;
-    //     _powerupManager.enabled = true;
-    // }
+    public void EnablePlayer()
+    {
+        playerController.enabled = true;
+        _powerupManager.enabled = true;
+    }
+    
+    public void DisablePlayer()
+    {
+        playerController.enabled = false;
+        _powerupManager.enabled = false;
+    }
 
     #endregion
 
