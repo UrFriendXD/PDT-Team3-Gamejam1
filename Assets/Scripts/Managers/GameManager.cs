@@ -1,12 +1,7 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
-using System.Net.NetworkInformation;
 using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine;
-using UnityEngine.Experimental.GlobalIllumination;
 using UnityEngine.SceneManagement;
 using Hashtable = ExitGames.Client.Photon.Hashtable;
 
@@ -122,6 +117,15 @@ public class GameManager : MonoBehaviourPunCallbacks
     public void DisableLocalPlayer()
     {
         PlayerManager.LocalPlayerInstance.GetComponent<PlayerManager>().DisablePlayer();
+    }
+
+    public void ReturnToLobby()
+    {
+        if (PhotonNetwork.IsMasterClient)
+        {
+            PhotonNetwork.LoadLevel("Lobby");
+            PhotonNetwork.CurrentRoom.IsOpen = true;
+        }
     }
 
     #endregion

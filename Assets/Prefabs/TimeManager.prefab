@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7697855425783268885}
   - component: {fileID: 7697855425783268882}
   - component: {fileID: 7697855426403113632}
+  - component: {fileID: 7697855426403113633}
   m_Layer: 0
   m_Name: TimeManager
   m_TagString: Untagged
@@ -45,11 +46,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerTimer: {fileID: 7697855426403113632}
+  postGameMenu: {fileID: 0}
   _timePanels:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  lobbyButton: {fileID: 0}
 --- !u!114 &7697855426403113632
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -67,7 +70,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: DisableLocalPlayer
+        m_MethodName: EnableLocalPlayer
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -80,7 +83,30 @@ MonoBehaviour:
   OnTimerStopped:
     m_PersistentCalls:
       m_Calls: []
+  courseManager: {fileID: 0}
   countdownText: {fileID: 0}
   countdownSeconds: 3
   startMessage: GO
   startCountdownOnAwake: 0
+--- !u!114 &7697855426403113633
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7697855425783268884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  observableSearch: 2
+  Synchronization: 3
+  OwnershipTransfer: 0
+  ObservedComponents: []
+  viewIdField: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0

@@ -6,6 +6,7 @@ using Photon.Pun;
 using Photon.Realtime;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TimeManager : MonoBehaviourPunCallbacks
 {
@@ -19,9 +20,19 @@ public class TimeManager : MonoBehaviourPunCallbacks
 
     [SerializeField] private GameObject postGameMenu;
     [SerializeField] private List<PlayerTimePanel> _timePanels = new List<PlayerTimePanel>();
+    [SerializeField] private GameObject lobbyButton;
+    
     private List<float> playerTimes = new List<float>();
 
     private const string FinishedTime = "FinishedTime";
+    
+    private bool AllPlayersFinishedLevel
+    {
+        get
+        {
+            return PhotonNetwork.PlayerList.All(player => (float) player.CustomProperties[FinishedTime] > 0);
+        }
+    }
 
     #endregion
 
@@ -34,6 +45,11 @@ public class TimeManager : MonoBehaviourPunCallbacks
         playerTimes.Add((float) targetPlayer.CustomProperties[FinishedTime]);
         playerTimes = playerTimes.OrderBy(i => i).ToList();
         UpdateTimes(targetPlayer.NickName);
+
+        if (!PhotonNetwork.IsMasterClient) return;
+
+        if (!AllPlayersFinishedLevel) return;
+        lobbyButton.SetActive(true);
     }
 
     #endregion
