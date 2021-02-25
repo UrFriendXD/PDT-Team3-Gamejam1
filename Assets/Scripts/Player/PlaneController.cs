@@ -7,6 +7,7 @@ public class PlaneController : VehicleController
 {
     [SerializeField] private float rotationSpeed;
     [SerializeField] private float airBrakeMultiplier;
+    [SerializeField] private float maxSpeed;
 
     #region Private Fields
 
@@ -83,9 +84,21 @@ public class PlaneController : VehicleController
 
     protected override void MovePlayer()
     {
-        rb.AddForce(transform.forward * (throttle * thrustMultiplier) * Time.deltaTime);
-        rb.AddForce(transform.up * (strafe.y * thrustMultiplier) * Time.deltaTime);
-        rb.AddForce(transform.right * (strafe.x * thrustMultiplier) * Time.deltaTime);
+        if (transform.InverseTransformDirection(rb.velocity).z < maxSpeed)
+        {
+            rb.AddForce(transform.forward * (throttle * thrustMultiplier) * Time.deltaTime);
+        }
+
+        if (transform.InverseTransformDirection(rb.velocity).y < maxSpeed)
+        {
+            rb.AddForce(transform.up * (strafe.y * thrustMultiplier) * Time.deltaTime);
+        }
+
+        if (transform.InverseTransformDirection(rb.velocity).x < maxSpeed)
+        {
+            rb.AddForce(transform.right * (strafe.x * thrustMultiplier) * Time.deltaTime);
+        }
+
         rb.AddForce(rb.velocity * -1 * (airBrakes * airBrakeMultiplier) * Time.deltaTime);
     }
 
