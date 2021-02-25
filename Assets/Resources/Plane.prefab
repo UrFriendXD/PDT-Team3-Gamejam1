@@ -233,7 +233,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 054068a891508c2418b0255cbb2c6827, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startPowerup: {fileID: 11400000, guid: af9871ca9f9ca8c4dbe540b3a0ed63b3, type: 2}
+  startPowerup: {fileID: 11400000, guid: 97e4f4b6ed3398744ad7de9e5fdb2fca, type: 2}
   powerupSpawnOffset: {x: 0, y: 0, z: 2}
   numberOfRings: 4
   ringPointMultiplier: 4
