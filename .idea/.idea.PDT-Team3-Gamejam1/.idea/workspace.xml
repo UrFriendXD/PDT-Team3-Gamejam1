@@ -2,11 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="35e1ca94-6602-4458-be73-84dce55e56d7" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.PDT-Team3-Gamejam1/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PDT-Team3-Gamejam1/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Explosion.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Explosion.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Explosion.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Explosion.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Missile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Missile.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Explosion.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Explosion.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Homing Missile.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Homing Missile.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Plane.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Plane.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/PowerupManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/PowerupManager.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,6 +62,7 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/UI/PlayerUI.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Missile.cs" />
       <option value="$PROJECT_DIR$/Assets/Explosion.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Player/PowerupManager.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1ok3M7SFbelGkM2aU6r1fO9dxyW" />

@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 898888262150998192}
-  - component: {fileID: 2716731494259603875}
+  - component: {fileID: 8942236616572891498}
   - component: {fileID: 898888262150998188}
   - component: {fileID: 4942129798437699486}
   - component: {fileID: 6434246079015292321}
@@ -40,19 +40,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &2716731494259603875
-BoxCollider:
+--- !u!64 &8942236616572891498
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 898888262150998189}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: 28723f10c2a8e094a9351e892f5271b8, type: 3}
 --- !u!54 &898888262150998188
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -173,7 +174,7 @@ MonoBehaviour:
   numberOfRings: 4
   ringPointMultiplier: 4
   ringSpread: 0.02
-  unlimitedPowerups: 1
+  unlimitedPowerups: 0
   raycastOriginOffset: {x: 0, y: 0, z: 3}
 --- !u!114 &-7839093377881365967
 MonoBehaviour:

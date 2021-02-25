@@ -154,7 +154,7 @@ MonoBehaviour:
   acceleration: 3000
   maxSpeed: 70
   detonationTime: 5
-  trackingSpeed: 3
+  trackingSpeed: 1000
 --- !u!54 &4191985423280402216
 Rigidbody:
   m_ObjectHideFlags: 0
