@@ -88,6 +88,10 @@ public class PowerupManager : MonoBehaviourPun
                 case "Remote Missile":
                     newPowerup.GetComponent<Rigidbody>().velocity = rigidbody.velocity;
                     break;
+                case "Boost":
+                    newPowerup.GetComponent<Boost>().SetPlayer(transform);
+                    break;
+
             }
 
             if (!unlimitedPowerups)
