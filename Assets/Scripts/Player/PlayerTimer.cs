@@ -11,6 +11,7 @@ public class PlayerTimer : MonoBehaviour
 
     [SerializeField] private UnityEvent OnEndCountdown;
     [SerializeField] private UnityEvent OnTimerStopped;
+    [SerializeField] private CourseManager courseManager;
     [SerializeField] private TextMeshProUGUI countdownText;
     [SerializeField] private int countdownSeconds;
     [SerializeField] private string startMessage;
@@ -22,7 +23,8 @@ public class PlayerTimer : MonoBehaviour
 
     private float timer;
     private bool timerActive;
-    private CourseManager courseManager;
+    
+    private TimeManager _timeManager;
 
     #endregion
 
@@ -30,8 +32,8 @@ public class PlayerTimer : MonoBehaviour
 
     private void Start()
     {
-        courseManager = GameObject.Find("CourseManager")?.GetComponent<CourseManager>();
-        courseManager.OnCourseComplete.AddListener(StopTimer);
+        _timeManager = GetComponentInParent<TimeManager>();
+        //courseManager.OnCourseComplete.AddListener(StopTimer);
 
         if (startCountdownOnAwake)
         {
@@ -64,8 +66,9 @@ public class PlayerTimer : MonoBehaviour
     public void StopTimer ()
     {
         timerActive = false;
-
-        OnTimerStopped.Invoke();
+        
+        _timeManager.LocalPlayerFinishedLevel(timer);
+        //OnTimerStopped.Invoke();
     }
 
     #endregion

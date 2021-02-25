@@ -180,7 +180,9 @@
           </e>
         </e>
         <e p="Scripts" t="Include">
+          <e p="Boost.cs" t="Include" />
           <e p="CheckpointController.cs" t="Include" />
+          <e p="HomingMissile.cs" t="Include" />
           <e p="Managers" t="Include">
             <e p="CourseManager.cs" t="Include" />
             <e p="GameManager.cs" t="Include" />
@@ -200,11 +202,13 @@
           </e>
           <e p="Powerup.cs" t="Include" />
           <e p="PowerupDisplay.cs" t="Include" />
+          <e p="RemoteMissile.cs" t="Include" />
           <e p="UI" t="Include">
             <e p="Launcher.cs" t="Include" />
             <e p="PlayerListing.cs" t="Include" />
             <e p="PlayerListingMenu.cs" t="Include" />
             <e p="PlayerNameInputField.cs" t="Include" />
+            <e p="PlayerTimePanel.cs" t="Include" />
             <e p="PlayerUI.cs" t="Include" />
           </e>
         </e>
