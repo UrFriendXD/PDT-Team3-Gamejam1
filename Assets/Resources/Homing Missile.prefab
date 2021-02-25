@@ -152,7 +152,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosion: {fileID: 1933234842060517506, guid: 3a1e1c26b72500a4686dbafd009fdbeb, type: 3}
   acceleration: 3000
-  maxSpeed: 50
+  maxSpeed: 70
   detonationTime: 5
   trackingSpeed: 3
 --- !u!54 &4191985423280402216
