@@ -40,8 +40,8 @@ public class Missile : MonoBehaviourPun
 
     protected void Detonate()
     {
-        Instantiate(explosion, transform.position, Quaternion.identity);
-
+        PhotonNetwork.Instantiate(explosion.name, transform.position, Quaternion.identity);
+        
         // Destroy object on the network
         if (photonView.IsMine)
         {

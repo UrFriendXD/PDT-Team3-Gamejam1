@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
 
-public class Explosion : MonoBehaviour
+public class Explosion : MonoBehaviourPun
 {
     #region Private Serializable Fields
 
@@ -31,7 +32,7 @@ public class Explosion : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.tag == "Player")
+        if (other.CompareTag("Player"))
         {
             Rigidbody playerRigidbody = other.attachedRigidbody;
 
@@ -50,7 +51,7 @@ public class Explosion : MonoBehaviour
         // Increase size from zero to maxSize
         while (timer < attackTime)
         {
-            transform.localScale = Vector3.one * maxSize * timer / attackTime;
+            transform.localScale = Vector3.one * (maxSize * timer) / attackTime;
 
             timer += Time.deltaTime;
 
@@ -69,14 +70,17 @@ public class Explosion : MonoBehaviour
         // Decrease size from maxSize to zero
         while (timer < releaseTime)
         {
-            transform.localScale = Vector3.one * maxSize * (1 - timer / releaseTime);
+            transform.localScale = Vector3.one * (maxSize * (1 - timer / releaseTime));
 
             timer += Time.deltaTime;
 
             yield return null;
         }
 
-        Destroy(gameObject);
+        if (photonView.IsMine)
+        {
+            PhotonNetwork.Destroy(gameObject);
+        }
     }
 
     #endregion

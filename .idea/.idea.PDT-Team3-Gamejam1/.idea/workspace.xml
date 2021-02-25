@@ -3,7 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="35e1ca94-6602-4458-be73-84dce55e56d7" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.PDT-Team3-Gamejam1/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PDT-Team3-Gamejam1/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/PlayerUI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/PlayerUI.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Explosion.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Explosion.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Explosion.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Explosion.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Missile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Missile.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,7 +48,6 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/VehicleController.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/PlaneController.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/LobbyManager.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Missile.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/PlayerManager.cs" />
       <option value="$PROJECT_DIR$/Assets/Photon/PhotonUnityNetworking/UtilityScripts/Room/CountdownTimer.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/UI/Launcher.cs" />
@@ -59,6 +61,8 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/Managers/GameManager.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Managers/TimeManager.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/UI/PlayerUI.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Missile.cs" />
+      <option value="$PROJECT_DIR$/Assets/Explosion.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1ok3M7SFbelGkM2aU6r1fO9dxyW" />
@@ -121,7 +125,7 @@
       <workItem from="1614080574130" duration="1286000" />
       <workItem from="1614168550462" duration="10527000" />
       <workItem from="1614245255008" duration="11439000" />
-      <workItem from="1614262814335" duration="1009000" />
+      <workItem from="1614262814335" duration="2502000" />
     </task>
     <servers />
   </component>
