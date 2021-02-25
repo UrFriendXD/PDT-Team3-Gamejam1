@@ -5,6 +5,8 @@ using UnityEngine.InputSystem;
 
 public class PlaneController : VehicleController
 {
+    #region Private Fields
+
     private Controls controls;
 
     private float throttle;
@@ -14,12 +16,16 @@ public class PlaneController : VehicleController
 
     private Rigidbody rb;
 
+    #endregion
+
+    #region MonoBehaviour CallBacks
+
     private void Awake()
     {
         controls = new Controls();
     }
 
-    void Start()
+    private void Start()
     {
         rb = GetComponent<Rigidbody>();
 
@@ -42,12 +48,15 @@ public class PlaneController : VehicleController
             .WithGroup("KB&M");
     }
 
-    void Update()
+    private void Update()
     {
         RotatePlayer();
         MovePlayer();
-
     }
+
+    #endregion
+
+    #region Protected Methods
 
     // Binds actions to values
     protected override void SetupControls()
@@ -74,12 +83,20 @@ public class PlaneController : VehicleController
 
     protected override void RotatePlayer()
     {
-        transform.rotation = Quaternion.Euler(
-            pitch * maxTurn * (invertPitch ? -1 : 1),
-            transform.rotation.eulerAngles.y + yaw * yawSpeed * Time.deltaTime,
-            yaw * maxTurn * -1
+        transform.rotation = Quaternion.Slerp(
+            transform.rotation,
+            Quaternion.Euler(
+                pitch * maxTurn * (invertPitch ? -1 : 1),
+                transform.rotation.eulerAngles.y + yaw * yawSpeed,
+                yaw * maxTurn * -1
+            ),
+            Time.deltaTime
         );
     }
+
+    #endregion
+
+    #region Public Methods
 
     public override void OnEnable()
     {
@@ -92,4 +109,6 @@ public class PlaneController : VehicleController
         base.OnDisable();
         controls.Disable();
     }
+
+    #endregion
 }

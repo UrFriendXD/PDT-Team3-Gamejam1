@@ -2,55 +2,43 @@ using System.Collections;
 using System.Collections.Generic;
 using Photon.Pun;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class Missile : MonoBehaviourPun
 {
     #region Private Serializable Fields
 
-    [SerializeField] private float speed;
-    [SerializeField] private GameObject explosion;
+    [SerializeField] protected GameObject explosion;
+    [SerializeField] protected float acceleration;
+    [SerializeField] protected float maxSpeed;
+    [SerializeField] protected float detonationTime;
 
     #endregion
 
     #region Private Fields
 
-    private Controls controls;
+    protected new Rigidbody rigidbody;
 
     #endregion
 
     #region MonoBehaviour CallBacks
 
-    private void Awake()
+    protected virtual void Start()
     {
-        controls = new Controls();
+        rigidbody = GetComponent<Rigidbody>();
+
+        StartCoroutine(Timeout());
     }
 
-    private void Start()
+    protected virtual void OnCollisionEnter(Collision collision)
     {
-        controls.PlaneFlight.Fire.performed += ctx => Detonate();
-    }
-
-    private void Update()
-    {
-        transform.Translate(transform.forward * (speed * Time.deltaTime), Space.World);
-    }
-
-    private void OnEnable()
-    {
-        controls.Enable();
-    }
-
-    private void OnDisable()
-    {
-        controls.Disable();
+        Detonate();
     }
 
     #endregion
 
     #region Private Methods
 
-    private void Detonate()
+    protected void Detonate()
     {
         Instantiate(explosion, transform.position, Quaternion.identity);
 
@@ -59,6 +47,17 @@ public class Missile : MonoBehaviourPun
         {
             PhotonNetwork.Destroy(gameObject);
         }
+    }
+
+    #endregion
+
+    #region IEnumerators
+
+    private IEnumerator Timeout()
+    {
+        yield return new WaitForSeconds(detonationTime);
+
+        Detonate();
     }
 
     #endregion

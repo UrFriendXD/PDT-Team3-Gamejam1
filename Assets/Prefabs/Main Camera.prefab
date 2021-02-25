@@ -97,6 +97,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  frontOffset: -10
-  upOffset: 4
+  frontOffset: -20
+  upOffset: 0
   pitchFollowFactor: 0.1

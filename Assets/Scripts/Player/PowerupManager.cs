@@ -8,15 +8,22 @@ public class PowerupManager : MonoBehaviourPun
 {
     #region Private Serializable Fields
 
-    [SerializeField] private GameObject startPowerup;
+    [SerializeField] private Powerup startPowerup;
+    [SerializeField] private Vector3 powerupSpawnOffset;
+    [SerializeField] private int numberOfRings;
+    [SerializeField] private int ringPointMultiplier;
+    [SerializeField] private float ringSpread;
+    [SerializeField] private bool unlimitedPowerups;
 
     #endregion
 
     #region Private Fields
 
-    private GameObject currentPowerup;
+    private Powerup currentPowerup;
 
     private Controls controls;
+
+    private new Rigidbody rigidbody;
 
     #endregion
 
@@ -32,6 +39,8 @@ public class PowerupManager : MonoBehaviourPun
         currentPowerup = startPowerup;
 
         controls.PlaneFlight.Fire.performed += ctx => Fire();
+
+        rigidbody = GetComponent<Rigidbody>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -42,7 +51,7 @@ public class PowerupManager : MonoBehaviourPun
 
             if (displayScript != null)
             {
-                currentPowerup = displayScript.powerup.obj;
+                currentPowerup = displayScript.powerup;
             }
         }
     }
@@ -65,16 +74,68 @@ public class PowerupManager : MonoBehaviourPun
     {
         if (currentPowerup != null)
         {
-            // GameObject bullet = Instantiate(
-            //     currentPowerup,
-            //     transform.position,
-            //     transform.rotation
-            // );
-            
             // Networked instantiation
-            PhotonNetwork.Instantiate(currentPowerup.name, transform.position, transform.rotation, 0);
-            currentPowerup = null;
+            GameObject newPowerup = PhotonNetwork.Instantiate(currentPowerup.obj.name, transform.position + transform.TransformDirection(powerupSpawnOffset), transform.rotation, 0);
+
+            switch (currentPowerup.name)
+            {
+                case "Homing Missile":
+                    newPowerup.GetComponent<HomingMissile>().SetTarget(FindTarget());
+
+                    newPowerup.GetComponent<Rigidbody>().velocity = rigidbody.velocity;
+                    Debug.Log(newPowerup.GetComponent<Rigidbody>().velocity);
+                    break;
+                case "Remote Missile":
+                    newPowerup.GetComponent<Rigidbody>().velocity = rigidbody.velocity;
+                    break;
+            }
+
+            if (!unlimitedPowerups)
+            {
+                currentPowerup = null;
+            }
         }
+    }
+
+    private Transform FindTarget ()
+    {
+        RaycastHit hit;
+
+        for (int i = 0; i < numberOfRings; i++)
+        {
+            int raysInRing = i * ringPointMultiplier;
+
+            for (int j = 0; j < raysInRing; j++)
+            {
+                float angleInDegrees = (float)j / raysInRing * 360;
+                float angleInRadians = angleInDegrees * Mathf.PI / 180;
+
+                Vector3 castDirection = transform.TransformDirection(new Vector3(
+                    (float)(Vector3.forward.x + i * ringSpread * Mathf.Sin(angleInRadians)),
+                    (float)(Vector3.forward.y + i * ringSpread * Mathf.Cos(angleInRadians)),
+                    Vector3.forward.z
+                ));
+
+                if (Physics.Raycast(transform.position, castDirection, out hit, Mathf.Infinity))
+                {
+                    if (hit.transform.tag == "Player")
+                    {
+                        Debug.DrawRay(transform.position, castDirection * hit.distance, Color.red, 1);
+
+                        return hit.transform;
+                    } else
+                    {
+                        Debug.DrawRay(transform.position, castDirection * hit.distance, Color.yellow, 1);
+                    }
+                }
+                else
+                {
+                    Debug.DrawRay(transform.position, castDirection * 1000, Color.white, 1);
+                }
+            }
+        }
+
+        return null;
     }
 
     #endregion

@@ -228,12 +228,17 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 898888262150998189}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 054068a891508c2418b0255cbb2c6827, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startPowerup: {fileID: 5061897685588312778, guid: 1abbc928568f3864796c0457eddfebd8, type: 3}
+  startPowerup: {fileID: 11400000, guid: 97e4f4b6ed3398744ad7de9e5fdb2fca, type: 2}
+  powerupSpawnOffset: {x: 0, y: 0, z: 2}
+  numberOfRings: 4
+  ringPointMultiplier: 4
+  ringSpread: 0.02
+  unlimitedPowerups: 1
 --- !u!114 &-7839093377881365967
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -255,7 +260,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 898888262150998189}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a70e7ec3d3352a843b5f12daa9a7f320, type: 3}
   m_Name: 
@@ -271,7 +276,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 898888262150998189}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ef2d70b662d263c489b41dd7c4d0454e, type: 3}
   m_Name: 
