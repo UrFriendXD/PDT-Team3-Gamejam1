@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 898888262150998192}
-  - component: {fileID: 898888262150998195}
   - component: {fileID: 2716731494259603875}
   - component: {fileID: 898888262150998188}
   - component: {fileID: 4942129798437699486}
@@ -18,6 +17,7 @@ GameObject:
   - component: {fileID: 6158095127831369264}
   - component: {fileID: -7839093377881365967}
   - component: {fileID: 6979768966148657305}
+  - component: {fileID: 2537626723477058594}
   m_Layer: 0
   m_Name: Plane
   m_TagString: Player
@@ -40,19 +40,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &898888262150998195
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 898888262150998189}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &2716731494259603875
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -182,12 +169,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startPowerup: {fileID: 11400000, guid: af9871ca9f9ca8c4dbe540b3a0ed63b3, type: 2}
-  powerupSpawnOffset: {x: 0, y: 0, z: 2}
+  powerupSpawnOffset: {x: 0, y: 0, z: 3}
   numberOfRings: 4
   ringPointMultiplier: 4
   ringSpread: 0.02
   unlimitedPowerups: 1
-  raycastOriginOffset: {x: 0, y: 0, z: 2}
+  raycastOriginOffset: {x: 0, y: 0, z: 3}
 --- !u!114 &-7839093377881365967
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -222,6 +209,20 @@ MonoBehaviour:
   rotationSpeed: 3
   airBrakeMultiplier: 100
   maxSpeed: 50
+--- !u!64 &2537626723477058594
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 898888262150998189}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: 28723f10c2a8e094a9351e892f5271b8, type: 3}
 --- !u!1 &6251373831123070696
 GameObject:
   m_ObjectHideFlags: 0
