@@ -14,6 +14,7 @@ public class PowerupManager : MonoBehaviourPun
     [SerializeField] private int ringPointMultiplier;
     [SerializeField] private float ringSpread;
     [SerializeField] private bool unlimitedPowerups;
+    [SerializeField] private Vector3 raycastOriginOffset;
 
     #endregion
 
@@ -120,7 +121,7 @@ public class PowerupManager : MonoBehaviourPun
                     Vector3.forward.z
                 ));
 
-                if (Physics.Raycast(transform.position, castDirection, out hit, Mathf.Infinity))
+                if (Physics.Raycast(transform.position + transform.TransformDirection(raycastOriginOffset), castDirection, out hit, Mathf.Infinity))
                 {
                     if (hit.transform.tag == "Player")
                     {
