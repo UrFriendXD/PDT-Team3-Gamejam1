@@ -65,6 +65,14 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Air Brakes"",
+                    ""type"": ""Button"",
+                    ""id"": ""dcc4ea29-2af6-4e4a-b0a0-da03c787e01f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -80,70 +88,26 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""Triggers"",
-                    ""id"": ""433413f4-e549-42ff-b749-80f0f44b730d"",
-                    ""path"": ""1DAxis"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Throttle"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""negative"",
-                    ""id"": ""0c71f3f8-8462-447d-a7ad-7a3333f62a91"",
-                    ""path"": ""<Gamepad>/leftTrigger"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""GamePad"",
-                    ""action"": ""Throttle"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""positive"",
-                    ""id"": ""03962607-2a59-42d6-91d5-dbca9378befd"",
+                    ""name"": """",
+                    ""id"": ""71b87c98-199b-4669-9115-7cc7cc2c09b0"",
                     ""path"": ""<Gamepad>/rightTrigger"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""GamePad"",
                     ""action"": ""Throttle"",
                     ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""Keyboard"",
-                    ""id"": ""a368b660-48e5-4ff4-a003-2a591c513e0c"",
-                    ""path"": ""1DAxis"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Throttle"",
-                    ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""negative"",
-                    ""id"": ""2aaa4dda-3a79-44f4-b0e7-46a864e585fd"",
-                    ""path"": ""<Keyboard>/s"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""KB&M"",
-                    ""action"": ""Throttle"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""positive"",
-                    ""id"": ""9b2f03c6-b674-4f28-9021-d4db9218f4d0"",
+                    ""name"": """",
+                    ""id"": ""4f88c113-3f72-4e36-9041-3adca92c5513"",
                     ""path"": ""<Keyboard>/w"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""KB&M"",
                     ""action"": ""Throttle"",
                     ""isComposite"": false,
-                    ""isPartOfComposite"": true
+                    ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
@@ -265,6 +229,28 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""action"": ""Fire"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""929f3328-de75-4b68-ba5f-30b1e1b7de99"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""GamePad"",
+                    ""action"": ""Air Brakes"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bcfbffc2-e51c-45b1-83a6-c1bf076254cb"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KB&M"",
+                    ""action"": ""Air Brakes"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -307,6 +293,7 @@ public class @Controls : IInputActionCollection, IDisposable
         m_PlaneFlight_Strafe = m_PlaneFlight.FindAction("Strafe", throwIfNotFound: true);
         m_PlaneFlight_Pause = m_PlaneFlight.FindAction("Pause", throwIfNotFound: true);
         m_PlaneFlight_Fire = m_PlaneFlight.FindAction("Fire", throwIfNotFound: true);
+        m_PlaneFlight_AirBrakes = m_PlaneFlight.FindAction("Air Brakes", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -362,6 +349,7 @@ public class @Controls : IInputActionCollection, IDisposable
     private readonly InputAction m_PlaneFlight_Strafe;
     private readonly InputAction m_PlaneFlight_Pause;
     private readonly InputAction m_PlaneFlight_Fire;
+    private readonly InputAction m_PlaneFlight_AirBrakes;
     public struct PlaneFlightActions
     {
         private @Controls m_Wrapper;
@@ -372,6 +360,7 @@ public class @Controls : IInputActionCollection, IDisposable
         public InputAction @Strafe => m_Wrapper.m_PlaneFlight_Strafe;
         public InputAction @Pause => m_Wrapper.m_PlaneFlight_Pause;
         public InputAction @Fire => m_Wrapper.m_PlaneFlight_Fire;
+        public InputAction @AirBrakes => m_Wrapper.m_PlaneFlight_AirBrakes;
         public InputActionMap Get() { return m_Wrapper.m_PlaneFlight; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -399,6 +388,9 @@ public class @Controls : IInputActionCollection, IDisposable
                 @Fire.started -= m_Wrapper.m_PlaneFlightActionsCallbackInterface.OnFire;
                 @Fire.performed -= m_Wrapper.m_PlaneFlightActionsCallbackInterface.OnFire;
                 @Fire.canceled -= m_Wrapper.m_PlaneFlightActionsCallbackInterface.OnFire;
+                @AirBrakes.started -= m_Wrapper.m_PlaneFlightActionsCallbackInterface.OnAirBrakes;
+                @AirBrakes.performed -= m_Wrapper.m_PlaneFlightActionsCallbackInterface.OnAirBrakes;
+                @AirBrakes.canceled -= m_Wrapper.m_PlaneFlightActionsCallbackInterface.OnAirBrakes;
             }
             m_Wrapper.m_PlaneFlightActionsCallbackInterface = instance;
             if (instance != null)
@@ -421,6 +413,9 @@ public class @Controls : IInputActionCollection, IDisposable
                 @Fire.started += instance.OnFire;
                 @Fire.performed += instance.OnFire;
                 @Fire.canceled += instance.OnFire;
+                @AirBrakes.started += instance.OnAirBrakes;
+                @AirBrakes.performed += instance.OnAirBrakes;
+                @AirBrakes.canceled += instance.OnAirBrakes;
             }
         }
     }
@@ -451,5 +446,6 @@ public class @Controls : IInputActionCollection, IDisposable
         void OnStrafe(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
         void OnFire(InputAction.CallbackContext context);
+        void OnAirBrakes(InputAction.CallbackContext context);
     }
 }

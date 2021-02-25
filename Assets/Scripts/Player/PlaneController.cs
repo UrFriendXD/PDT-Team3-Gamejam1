@@ -6,6 +6,8 @@ using UnityEngine.InputSystem;
 public class PlaneController : VehicleController
 {
     [SerializeField] private float rotationSpeed;
+    [SerializeField] private float airBrakeMultiplier;
+    [SerializeField] private float maxSpeed;
 
     #region Private Fields
 
@@ -15,6 +17,7 @@ public class PlaneController : VehicleController
     private Vector2 strafe;
     private float yaw;
     private float pitch;
+    private float airBrakes;
 
     private Rigidbody rb;
 
@@ -74,13 +77,29 @@ public class PlaneController : VehicleController
 
         controls.PlaneFlight.Pitch.performed += ctx => pitch = ctx.ReadValue<float>();
         controls.PlaneFlight.Pitch.canceled += ctx => pitch = 0;
+
+        controls.PlaneFlight.AirBrakes.performed += ctx => airBrakes = ctx.ReadValue<float>();
+        controls.PlaneFlight.AirBrakes.canceled += ctx => airBrakes = 0;
     }
 
     protected override void MovePlayer()
     {
-        rb.AddForce(transform.forward * (throttle * thrustMultiplier * Time.deltaTime));
-        rb.AddForce(transform.up * (strafe.y * thrustMultiplier * Time.deltaTime));
-        rb.AddForce(transform.right * (strafe.x * thrustMultiplier * Time.deltaTime));
+        if (transform.InverseTransformDirection(rb.velocity).z < maxSpeed)
+        {
+            rb.AddForce(transform.forward * (throttle * thrustMultiplier) * Time.deltaTime);
+        }
+
+        if (transform.InverseTransformDirection(rb.velocity).y < maxSpeed)
+        {
+            rb.AddForce(transform.up * (strafe.y * thrustMultiplier) * Time.deltaTime);
+        }
+
+        if (transform.InverseTransformDirection(rb.velocity).x < maxSpeed)
+        {
+            rb.AddForce(transform.right * (strafe.x * thrustMultiplier) * Time.deltaTime);
+        }
+
+        rb.AddForce(rb.velocity * -1 * (airBrakes * airBrakeMultiplier) * Time.deltaTime);
     }
 
     protected override void RotatePlayer()
