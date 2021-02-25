@@ -108,7 +108,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbdfde6351df6f242ba17d0dbe1a88d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSize: 4
+  maxSize: 10
   attackTime: 1
   sustainTime: 2
   releaseTime: 0.5
