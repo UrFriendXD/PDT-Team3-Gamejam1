@@ -84,19 +84,15 @@ public class PlaneController : VehicleController
 
     protected override void MovePlayer()
     {
-        if (Mathf.Abs(transform.InverseTransformDirection(rb.velocity).z) < maxSpeed)
-        {
-            rb.AddForce(transform.forward * (throttle * thrustMultiplier) * Time.deltaTime);
-        }
+        Vector3 normalisedForce = new Vector3(
+            strafe.x,
+            strafe.y,
+            throttle
+        ).normalized;
 
-        if (Mathf.Abs(transform.InverseTransformDirection(rb.velocity).y) < maxSpeed)
+        if (rb.velocity.magnitude < maxSpeed)
         {
-            rb.AddForce(transform.up * (strafe.y * thrustMultiplier) * Time.deltaTime);
-        }
-
-        if (Mathf.Abs(transform.InverseTransformDirection(rb.velocity).x) < maxSpeed)
-        {
-            rb.AddForce(transform.right * (strafe.x * thrustMultiplier) * Time.deltaTime);
+            rb.AddForce(transform.TransformDirection(normalisedForce) * thrustMultiplier * Time.deltaTime);
         }
 
         rb.AddForce(rb.velocity * -1 * (airBrakes * airBrakeMultiplier) * Time.deltaTime);
