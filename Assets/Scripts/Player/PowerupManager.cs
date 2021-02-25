@@ -83,7 +83,7 @@ public class PowerupManager : MonoBehaviourPun
                 case "Homing Missile":
                     newPowerup.GetComponent<HomingMissile>().SetTarget(FindTarget());
 
-                    newPowerup.GetComponent<Rigidbody>().velocity = rigidbody.velocity;
+                    newPowerup.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, transform.InverseTransformDirection(rigidbody.velocity).z);
                     Debug.Log(newPowerup.GetComponent<Rigidbody>().velocity);
                     break;
                 case "Remote Missile":
