@@ -181,6 +181,7 @@
         </e>
         <e p="Scripts" t="Include">
           <e p="Boost.cs" t="Include" />
+          <e p="BoostZone.cs" t="Include" />
           <e p="CheckpointController.cs" t="Include" />
           <e p="HomingMissile.cs" t="Include" />
           <e p="Managers" t="Include">
