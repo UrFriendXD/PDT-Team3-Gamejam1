@@ -29,7 +29,7 @@ public class CourseManager : MonoBehaviour
             
             checkpoint.OnCheckpointTriggered += CheckpointTriggered;
 
-            checkpoint.SetActive(i == activeID ? true : false);
+            checkpoint.SetActive(i == activeID);
         }
     }
 
