@@ -90,7 +90,7 @@ public class PlayerUI : MonoBehaviour
         target = _target;
 
         targetTransform = target.GetComponent<Transform>();
-        targetRenderer = target.GetComponent<Renderer>();
+        targetRenderer = target.GetComponentInChildren<Renderer>();
         CharacterController characterController = target.GetComponent<CharacterController>();
         if (characterController != null)
         {
