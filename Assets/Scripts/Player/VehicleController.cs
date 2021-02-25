@@ -7,7 +7,8 @@ public class VehicleController : MonoBehaviourPunCallbacks
 {
     [SerializeField] protected float thrustMultiplier;
     [SerializeField] protected float yawSpeed;
-    [SerializeField] protected float maxTurn;
+    [SerializeField] protected float maxPitch;
+    [SerializeField] protected float maxRoll;
     [SerializeField] protected bool invertPitch;
 
     protected virtual void SetupControls()

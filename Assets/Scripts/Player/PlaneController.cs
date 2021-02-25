@@ -5,6 +5,8 @@ using UnityEngine.InputSystem;
 
 public class PlaneController : VehicleController
 {
+    [SerializeField] private float rotationSpeed;
+
     #region Private Fields
 
     private Controls controls;
@@ -83,14 +85,16 @@ public class PlaneController : VehicleController
 
     protected override void RotatePlayer()
     {
+        Vector3 targetRotation = new Vector3(
+            pitch * maxPitch * (invertPitch ? -1 : 1),
+            transform.rotation.eulerAngles.y + yaw * 90,
+            yaw * maxRoll * -1
+        );
+
         transform.rotation = Quaternion.Slerp(
             transform.rotation,
-            Quaternion.Euler(
-                pitch * maxTurn * (invertPitch ? -1 : 1),
-                transform.rotation.eulerAngles.y + yaw * yawSpeed,
-                yaw * maxTurn * -1
-            ),
-            Time.deltaTime
+            Quaternion.Euler(targetRotation),
+            rotationSpeed * Time.deltaTime
         );
     }
 
