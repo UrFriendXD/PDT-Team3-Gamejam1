@@ -32,7 +32,7 @@ public class Explosion : MonoBehaviourPun
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.tag == "Player")
+        if (other.CompareTag("Player"))
         {
             Rigidbody playerRigidbody = other.attachedRigidbody;
 
@@ -51,7 +51,7 @@ public class Explosion : MonoBehaviourPun
         // Increase size from zero to maxSize
         while (timer < attackTime)
         {
-            transform.localScale = Vector3.one * maxSize * timer / attackTime;
+            transform.localScale = Vector3.one * (maxSize * timer) / attackTime;
 
             timer += Time.deltaTime;
 
@@ -70,7 +70,7 @@ public class Explosion : MonoBehaviourPun
         // Decrease size from maxSize to zero
         while (timer < releaseTime)
         {
-            transform.localScale = Vector3.one * maxSize * (1 - timer / releaseTime);
+            transform.localScale = Vector3.one * (maxSize * (1 - timer / releaseTime));
 
             timer += Time.deltaTime;
 
