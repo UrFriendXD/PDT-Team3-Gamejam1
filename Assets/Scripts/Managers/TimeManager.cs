@@ -21,16 +21,17 @@ public class TimeManager : MonoBehaviourPunCallbacks
     [SerializeField] private GameObject postGameMenu;
     [SerializeField] private List<PlayerTimePanel> _timePanels = new List<PlayerTimePanel>();
     [SerializeField] private GameObject lobbyButton;
-    
-    private List<float> playerTimes = new List<float>();
+
+    private Dictionary<string, float> playerTimes = new Dictionary<string, float>();
 
     private const string FinishedTime = "FinishedTime";
+    private const string PlayerFinishedLevel = "PlayerFinishedLevel";
     
     private bool AllPlayersFinishedLevel
     {
         get
         {
-            return PhotonNetwork.PlayerList.All(player => (float) player.CustomProperties[FinishedTime] > 0);
+            return PhotonNetwork.PlayerList.All(player => player.CustomProperties[FinishedTime] != null);
         }
     }
 
@@ -40,11 +41,16 @@ public class TimeManager : MonoBehaviourPunCallbacks
 
     public override void OnPlayerPropertiesUpdate(Player targetPlayer, Hashtable changedProps)
     {
-        if (!changedProps.ContainsKey(FinishedTime)) return;
-        
-        playerTimes.Add((float) targetPlayer.CustomProperties[FinishedTime]);
-        playerTimes = playerTimes.OrderBy(i => i).ToList();
-        UpdateTimes(targetPlayer.NickName);
+        if (!changedProps.ContainsKey(FinishedTime) ) return;
+
+        if ((float) changedProps[FinishedTime] == 0) return;
+
+        if (!playerTimes.ContainsKey(targetPlayer.NickName))
+        {
+            playerTimes.Add(targetPlayer.NickName, (float) targetPlayer.CustomProperties[FinishedTime]);
+        }
+        playerTimes = playerTimes.OrderBy(pair => pair.Value).ToDictionary(pair => pair.Key, pair => pair.Value);
+        UpdateTimes();
 
         if (!PhotonNetwork.IsMasterClient) return;
 
@@ -59,7 +65,8 @@ public class TimeManager : MonoBehaviourPunCallbacks
     public void LocalPlayerFinishedLevel(float time)
     {
         postGameMenu.SetActive(enabled);
-        photonView.RPC("RPC_SendLocalPlayerTime", RpcTarget.All, time);
+        playerTimes.Add(PhotonNetwork.LocalPlayer.NickName, time);
+        PhotonNetwork.LocalPlayer.SetCustomProperties(new Hashtable { { FinishedTime, time } });
         GameManager.Instance.DisableLocalPlayer();
     }
 
@@ -67,7 +74,7 @@ public class TimeManager : MonoBehaviourPunCallbacks
 
     #region Private Methods
 
-    private void UpdateTimes(string nickname)
+    private void UpdateTimes()
     {
         for (var i = 0; i < playerTimes.Count; i++)
         {
@@ -75,7 +82,7 @@ public class TimeManager : MonoBehaviourPunCallbacks
             {
                 _timePanels[i].gameObject.SetActive(true);
             }
-            _timePanels[i].SetPlayersTime(i, nickname, playerTimes[i]);
+            _timePanels[i].SetPlayersTime(i, playerTimes.ElementAt(i).Key, playerTimes.ElementAt(i).Value);
         }
     }
 
@@ -84,9 +91,9 @@ public class TimeManager : MonoBehaviourPunCallbacks
     #region RPCS
 
     [PunRPC]
-    private void RPC_SendLocalPlayerTime(float time)
+    private void RPC_UpdatePlayerTimes(float time)
     {
-        PhotonNetwork.LocalPlayer.SetCustomProperties(new Hashtable { { FinishedTime, time } });
+        UpdateTimes();
     }
     
 
@@ -94,7 +101,6 @@ public class TimeManager : MonoBehaviourPunCallbacks
     // Start is called before the first frame update
     void Start()
     {
-        
     }
     
     

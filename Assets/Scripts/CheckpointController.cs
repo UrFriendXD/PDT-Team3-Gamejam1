@@ -35,10 +35,13 @@ public class CheckpointController : MonoBehaviourPun
 
     private void OnTriggerEnter(Collider other)
     {
-        PhotonView view = other.gameObject.GetComponent<PhotonView>();
-        if (active && view.IsMine)
+        if (other.gameObject.CompareTag("Player"))
         {
-            OnCheckpointTriggered?.Invoke(other.gameObject);
+            PhotonView view = other.gameObject.GetComponent<PhotonView>();
+            if (active && view.IsMine)
+            {
+                OnCheckpointTriggered?.Invoke(other.gameObject);
+            }
         }
     }
 

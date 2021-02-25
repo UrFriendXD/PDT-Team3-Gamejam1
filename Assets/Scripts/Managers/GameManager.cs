@@ -14,7 +14,18 @@ public class GameManager : MonoBehaviourPunCallbacks
     {
         get
         {
-            return PhotonNetwork.PlayerList.All(player => (bool) player.CustomProperties["ReadyToStart"] == true);
+            foreach (var player in PhotonNetwork.PlayerList)
+            {
+                if (player.CustomProperties["ReadyToStart"] == null)
+                {
+                    return false;
+                }
+                if ((bool)player.CustomProperties["ReadyToStart"] == false)
+                {
+                    return false;
+                }
+            }
+            return true;
         }
     }
 
@@ -93,8 +104,6 @@ public class GameManager : MonoBehaviourPunCallbacks
             Debug.Log("All Players ready");
             photonView.RPC("RPC_StartCountdownTimer", RpcTarget.AllBuffered);
         }
-
-        
         
     }
 
