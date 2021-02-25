@@ -221,6 +221,7 @@ MonoBehaviour:
   maxRoll: 0
   invertPitch: 1
   rotationSpeed: 3
+  airBrakeMultiplier: 100
 --- !u!114 &7635739597947732917
 MonoBehaviour:
   m_ObjectHideFlags: 0
