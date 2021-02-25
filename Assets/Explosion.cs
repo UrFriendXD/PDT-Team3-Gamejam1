@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
 
-public class Explosion : MonoBehaviour
+public class Explosion : MonoBehaviourPun
 {
     #region Private Serializable Fields
 
@@ -76,7 +77,11 @@ public class Explosion : MonoBehaviour
             yield return null;
         }
 
-        Destroy(gameObject);
+        // Destroy object on the network
+        if (photonView.IsMine)
+        {
+            PhotonNetwork.Destroy(gameObject);
+        }
     }
 
     #endregion
