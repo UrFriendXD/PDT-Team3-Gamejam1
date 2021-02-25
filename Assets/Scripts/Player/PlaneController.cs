@@ -21,6 +21,8 @@ public class PlaneController : VehicleController
 
     private Rigidbody rb;
 
+    private bool applicationFocused = true;
+
     #endregion
 
     #region MonoBehaviour CallBacks
@@ -55,8 +57,16 @@ public class PlaneController : VehicleController
 
     private void Update()
     {
-        RotatePlayer();
-        MovePlayer();
+        if (applicationFocused)
+        {
+            RotatePlayer();
+            MovePlayer();
+        }
+    }
+
+    private void OnApplicationFocus(bool focus)
+    {
+        applicationFocused = focus;
     }
 
     #endregion
